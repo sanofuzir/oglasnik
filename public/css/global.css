@@ -1,0 +1,49 @@
+/* 
+    Document   : global
+    Created on : 22.7.2012, 11:52:39
+    Author     : Admin
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+body {
+    font-size: 18px;
+}
+#header{
+    background-color: #141313;
+    height: 180px;
+}
+#header-logo {
+    text-align: center;
+    padding-top: 30px;
+    color: #FFFFFF;
+    font-size: 2em;
+}
+#header-navigation {
+    margin-left: 100px;
+    padding-top: 30px;
+}
+#header-navigation ul {
+    list-style-type: none;
+}
+#header-navigation li {
+    display: inline-block;
+    margin: 0 20px;
+    border: 1px solid #FFFFFF;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 1.1em;
+    background-color: #000000;
+}
+#header-navigation a:link, #header-navigation a:visited {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+#header-navigation a:hover {
+    color: red;
+}
