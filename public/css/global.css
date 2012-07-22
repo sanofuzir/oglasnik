@@ -25,6 +25,7 @@ body {
 #header-navigation {
     margin-left: 100px;
     padding-top: 30px;
+    position: relative;
 }
 #header-navigation ul {
     list-style-type: none;
