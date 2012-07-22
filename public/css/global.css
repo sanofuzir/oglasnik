@@ -48,3 +48,17 @@ body {
 #header-navigation a:hover {
     color: red;
 }
+#index_vsebina div{
+    border: 1px solid #000000;
+    width: 49.3%;
+    height: 200px;
+    margin-top: 10px;
+    float: left;
+}
+#oglas_dneva {
+    margin-left: 1%;
+}
+
+#najnovejsi_oglasi {
+    margin-left: 1%;
+}
