@@ -34,7 +34,8 @@
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <header>
-
+      <h1 style="text-align: center; margin:0 auto; padding-top: 100px;
+          background-color: grey; height: 100px;">Layout!</h1>
   </header>
   <div role="main">
 
@@ -63,5 +64,7 @@
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
   </script>
+<?php echo $this->layout()->content ?>
+ 
 </body>
 </html>
