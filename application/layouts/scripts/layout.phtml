@@ -59,9 +59,12 @@
               <li><a href="#">Profil</a></li>
               <li class="divider"></li>
               <li><a href="<?php echo $this->url(
-                                array('controller'=>'account'),
-                                'default',
-                                true) ?>">Registracija</a></li>
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'register'
+                                    ),
+                                    'default',
+                                    true) ?>">Registracija</a></li>
               <li><a href="#">Login</a></li>
               <li><a href="#">Logout</a></li>
             </ul>

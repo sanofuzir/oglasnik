@@ -1,6 +1,6 @@
 <?php
 
-class AccountController extends Zend_Controller_Action
+class Default_AccountController extends Zend_Controller_Action
 {
 
     public function init()
@@ -13,6 +13,13 @@ class AccountController extends Zend_Controller_Action
         // action body
     }
 
+    public function registerAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
