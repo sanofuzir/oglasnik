@@ -8,8 +8,8 @@
     <meta name="author" content="Sano fužir">
 
     <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -19,7 +19,7 @@
         padding: 9px 0;
       }
     </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -49,34 +49,105 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="./">Spletni Oglasnik</a>
+          <a class="brand" href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'index',
+                                        'action'     => 'index',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Spletni Oglasnik</a>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               <i class="icon-user"></i>Username
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Profil</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'index',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Profil</a></li>
               <li class="divider"></li>
               <li><a href="<?php echo $this->url(
                                     array(
                                         'controller' => 'account',
-                                        'action'     => 'register'
+                                        'action'     => 'register',
+                                        'module' => 'default'
                                     ),
                                     'default',
                                     true) ?>">Registracija</a></li>
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Logout</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'login',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Login</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'logout',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Logout</a></li>
             </ul>
           </div>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="ctive"><a href="./">Domov</a></li>
-              <li><a href="#Oglasi">Oglasi</a></li>
-              <li><a href="#Kontakti">Kontakti</a></li>
-              <li><a href="#Knjiga_gostov">Knjiga Gostov</a></li>
-              <li><a href="#Sponzorji">Sponzorji</a></li>
-              <li><a href="#Povezave">Povezave</a></li>
+              <li class="ctive"><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'index',
+                                        'action'     => 'index',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Domov</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'index',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Oglasi</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'contact',
+                                        'action'     => 'index',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Kontakti</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'guestbook',
+                                        'action'     => 'index',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Knjiga Gostov</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'sponsor',
+                                        'action'     => 'index',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Sponzorji</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'link',
+                                        'action'     => 'index',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Povezave</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -89,31 +160,163 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Spletni Oglasnik</li>
-              <li class="active"><a href="#">Novice</a></li>
+              <li class="active"><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'index',
+                                        'action'     => 'index',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Novice</a></li>
               <li class="nav-header">Nepremičnine</li>
-              <li><a href="#">Stanovanja</a></li>
-              <li><a href="#">Hiše</a></li>
-              <li><a href="#">Parcele</a></li>
-              <li><a href="#">Ostalo</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'apartment',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Stanovanja</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'house',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Hiše</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'land',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Parcele</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'realestate',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Ostalo</a></li>
               <li class="nav-header">Avto-moto</li>
-              <li><a href="#">Avtomobili</a></li>
-              <li><a href="#">Tovorna vozila</a></li>
-              <li><a href="#">Motorna vozila</a></li>
-              <li><a href="#">Motorna kolesa</a></li>
-              <li><a href="#">Avtodomi</a></li>
-              <li><a href="#">Ostalo</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'car',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Avtomobili</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'truck',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Tovorna vozila</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'bike',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Motorna kolesa</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'motorhome',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Avtodomi</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'automobile',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Ostalo</a></li>
               <li class="nav-header">Audio-video</li>
-              <li><a href="#">Zvočniki</a></li>
-              <li><a href="#">Oprema</a></li>
-              <li><a href="#">Ostalo</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'speaker',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Zvočniki</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'equipment',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Oprema</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'audiovideo',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Ostalo</a></li>
               <li class="nav-header">Računalništvo</li>
-              <li><a href="#">PC</a></li>
-              <li><a href="#">Mac</a></li>
-              <li><a href="#">Strežniki</a></li>
-              <li><a href="#">Oprema</a></li>
-              <li><a href="#">Ostalo</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'pc',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">PC</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'mac',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Mac</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'server',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Strežniki</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'table',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Tablice</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'computing',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Ostalo</a></li>
               <li class="nav-header">Ostalo</li>
-              <li><a href="#">Ostalo</a></li>
+              <li><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'other',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">Ostalo</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -131,19 +334,19 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap-transition.js"></script>
-    <script src="js/bootstrap-alert.js"></script>
-    <script src="js/bootstrap-modal.js"></script>
-    <script src="js/bootstrap-dropdown.js"></script>
-    <script src="js/bootstrap-scrollspy.js"></script>
-    <script src="js/bootstrap-tab.js"></script>
-    <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/bootstrap-popover.js"></script>
-    <script src="js/bootstrap-button.js"></script>
-    <script src="js/bootstrap-collapse.js"></script>
-    <script src="js/bootstrap-carousel.js"></script>
-    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap-transition.js"></script>
+    <script src="/js/bootstrap-alert.js"></script>
+    <script src="/js/bootstrap-modal.js"></script>
+    <script src="/js/bootstrap-dropdown.js"></script>
+    <script src="/js/bootstrap-scrollspy.js"></script>
+    <script src="/js/bootstrap-tab.js"></script>
+    <script src="/js/bootstrap-tooltip.js"></script>
+    <script src="/js/bootstrap-popover.js"></script>
+    <script src="/js/bootstrap-button.js"></script>
+    <script src="/js/bootstrap-collapse.js"></script>
+    <script src="/js/bootstrap-carousel.js"></script>
+    <script src="/js/bootstrap-typeahead.js"></script>
 
      <?php echo $this->layout()->content ?>
   </body>

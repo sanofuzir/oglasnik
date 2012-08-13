@@ -1,6 +1,6 @@
 <?php
 
-class Default_AccountController extends Zend_Controller_Action
+class AccountController extends Zend_Controller_Action
 {
 
     public function init()
@@ -18,8 +18,19 @@ class Default_AccountController extends Zend_Controller_Action
         // action body
     }
 
+    public function loginAction()
+    {
+        // action body
+    }
+    public function logoutAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 

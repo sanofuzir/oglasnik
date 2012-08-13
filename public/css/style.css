@@ -9,4 +9,8 @@
 root { 
     display: block;
 }
-
+#content {
+    border: 1px solid black;
+    padding: 50px;
+    margin: -750px 0px 0px 27%;
+}
