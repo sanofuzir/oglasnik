@@ -11,16 +11,21 @@ class AccountController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
+        //manjaka pridobivanje podatkov o uporabniku iz baze!
     }
 
     public function registerAction()
     {
-        // action body
+        $form    = new Default_Form_Registration();
+ 
+        $this->view->form = $form;
     }
 
     public function loginAction()
     {
-        // action body
+        $form    = new Default_Form_Login();
+ 
+        $this->view->form = $form;
     }
     public function logoutAction()
     {

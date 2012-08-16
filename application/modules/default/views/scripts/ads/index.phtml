@@ -1,6 +1,40 @@
 <div id="content">
     <div id="view-content">
-	<p>View script for controller <b>Ads</b> and script/action name <b>index</b></p>
+        <div id="ads">
+            <a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'add',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">
+                <h2>Dodajanje oglasov</h2>
+                <img src="/img/add.png" alt="add">
+            </a>
+            <a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'edit',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">
+                <h2>Urejanje oglasov</h2>
+                <img src="/img/edit.png" alt="edit">
+            </a>
+            <a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'ads',
+                                        'action'     => 'delete',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>">
+                <h2>Brisanje oglasov</h2>
+                <img src="/img/delete.png" alt="delete">
+            </a>
+        </div>
     </div>
 </div>
 
