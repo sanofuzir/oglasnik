@@ -1,43 +1,40 @@
 <?php
 
-class Default_Form_Login extends Zend_Form
+class Default_Form_Guestbook extends Zend_Form
 {
-
     public function init()
     {
         // Set the method for the display form to POST
         $this->setMethod('post');
  
-        // Add an username element
-        $this->addElement('text', 'username', array(
-            'label'      => 'Username:',
+        // Add an email element
+        $this->addElement('text', 'email', array(
+            'label'      => 'Email:',
             'required'   => true,
             'filters'    => array('StringTrim'),
             'validators' => array(
-                'username',
+                'EmailAddress',
             )
         ));
-        
-        // Add an password element
-        $this->addElement('password', 'password', array(
-            'label'      => 'Password:',
+ 
+        // Add the comment element
+        $this->addElement('textarea', 'comment', array(
+            'label'      => 'Komentar:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
             'validators' => array(
-                'password',
-            )
+                array('validator' => 'StringLength', 'options' => array(0, 20))
+                )
         ));
-
+ 
         // Add the submit button
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,
-            'label'    => 'Login',
+            'label'    => 'Vnesi',
         ));
  
         // And finally add some CSRF protection
         $this->addElement('hash', 'csrf', array(
             'ignore' => true,
-        )); 
-}
-
+        ));
+    }
 }

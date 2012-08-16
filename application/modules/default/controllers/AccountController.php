@@ -16,6 +16,7 @@ class AccountController extends Zend_Controller_Action
 
     public function registerAction()
     {
+        require_once '../application/modules/default/forms/Registration.php';
         $form    = new Default_Form_Registration();
  
         $this->view->form = $form;
@@ -23,6 +24,7 @@ class AccountController extends Zend_Controller_Action
 
     public function loginAction()
     {
+        require_once '../application/modules/default/forms/login.php';
         $form    = new Default_Form_Login();
  
         $this->view->form = $form;

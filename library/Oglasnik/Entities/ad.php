@@ -75,4 +75,13 @@ class Ad
      *
      */
     private $category_id;
+    
+    /**
+     * @var Category
+     *
+     * @ManyToOne(targetEntity="Category")
+     * @JoinColumn(name="category_id", referencedColumnName="id",nullable=false)
+     *
+     */
+    private $subcategory_id;
 }
