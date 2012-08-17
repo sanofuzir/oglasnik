@@ -47,7 +47,7 @@ class News
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\User")
      * @JoinColumns({
-     *   @ORM\JoinColumn(name="ad_id", referencedColumnName="id", nullable=false)
+     *   @JoinColumn(name="ad_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $user_id;

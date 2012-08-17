@@ -60,8 +60,8 @@ class Ad
      * @var Oglasnik\Entities\User
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @JoinColumns({
+     *   @JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $user_id;
@@ -75,6 +75,7 @@ class Ad
      * })
      */
     private $category_id;
+
 
     /**
      * Get ad_id
@@ -239,5 +240,4 @@ class Ad
     {
         return $this->category_id;
     }
-
 }
