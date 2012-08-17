@@ -1,39 +1,92 @@
 <?php
 
-namespace Oglasnik\Entities;;
+namespace Oglasnik\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * Oglasnik\Entities\Category
  *
- * @Entity
- * @Table(name="category",
- *        uniqueConstraints={@UniqueConstraint(name="name_uk", columns={"name"})}
- * )
- * @HasLifecycleCallbacks
- *
+ * @ORM\Table(name="category", uniqueConstraints={@ORM\UniqueConstraint(name="name_uk", columns={"name"})})
+ * @ORM\Entity
  */
-class Category 
+class Category
 {
     /**
-     * @var integer
+     * @var integer $category_id
      *
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="category_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $category_id;
-    
+
     /**
-     * @var string
+     * @var string $name
      *
-     * @Column(type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $name;
 
     /**
-     * @var string
+     * @var string $subcategory
      *
-     * @Column(type="string", length=255)
+     * @ORM\Column(name="subcategory", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
-    private $subcategory; 
+    private $subcategory;
+
+
+    /**
+     * Get category_id
+     *
+     * @return integer 
+     */
+    public function getCategoryId()
+    {
+        return $this->category_id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Category
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set subcategory
+     *
+     * @param string $subcategory
+     * @return Category
+     */
+    public function setSubcategory($subcategory)
+    {
+        $this->subcategory = $subcategory;
+        return $this;
+    }
+
+    /**
+     * Get subcategory
+     *
+     * @return string 
+     */
+    public function getSubcategory()
+    {
+        return $this->subcategory;
+    }
 }

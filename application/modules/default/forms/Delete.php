@@ -9,7 +9,7 @@ class Default_Form_Add extends Zend_Form
         $this->setMethod('post');
  
         // Add an name element
-        $this->addElement('text', 'name', array(
+        $this->addElement('select', 'name', array(
             'label'      => 'Ime:',
             'required'   => true,
             'filters'    => array('StringTrim'),

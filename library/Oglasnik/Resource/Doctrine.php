@@ -8,7 +8,7 @@ use Doctrine\Common\ClassLoader,
  *
  */
 
-class Oglasnik_Application_Resource_Doctrine extends \Zend_Application_Resource_ResourceAbstract
+class Oglasnik_Application_Resource_Doctrine extends Zend_Application_Resource_ResourceAbstract
 {
     /**
      * Initializes Doctrine Context.
@@ -22,7 +22,9 @@ class Oglasnik_Application_Resource_Doctrine extends \Zend_Application_Resource_
         $classLoader = new \Doctrine\Common\ClassLoader('Doctrine', realpath(APPLICATION_PATH . '/../library'));
         $classLoader->register();
 
-        $cfig = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(array(realpath(APPLICATION_PATH . '/../library/Oglasnik/Entities')), false,realpath(APPLICATION_PATH . '/../library/Oglasnik/Proxies') );
+        $cfig = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
+                array(realpath(APPLICATION_PATH . '/../library/Oglasnik/Entities')),
+                false,realpath(APPLICATION_PATH . '/../library/Oglasnik/Proxies') );
         $em = \Doctrine\ORM\EntityManager::create($config, $cfig);
         \Zend_Registry::set('em',$em);
 

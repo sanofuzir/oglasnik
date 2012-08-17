@@ -1,39 +1,92 @@
 <?php
 
-namespace Oglasnik\Entities;;
+namespace Oglasnik\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * Oglasnik\Entities\Guestbook
  *
- * @Entity
- * @Table(name="guestbook",
- *        uniqueConstraints={@UniqueConstraint(name="name_uk", columns={"name"})}
- * )
- * @HasLifecycleCallbacks
- *
+ * @ORM\Table(name="guestbook", uniqueConstraints={@ORM\UniqueConstraint(name="name_uk", columns={"name"})})
+ * @ORM\Entity
  */
-class Guestbook 
+class Guestbook
 {
     /**
-     * @var integer
+     * @var integer $guestbook_id
      *
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="guestbook_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $guestbook_id;
-    
+
     /**
-     * @var string
+     * @var string $email
      *
-     * @Column(type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $email;
-    
+
     /**
-     * @var string
+     * @var string $comment
      *
-     * @Column(type="string")
+     * @ORM\Column(name="comment", type="string", precision=0, scale=0, nullable=false, unique=false)
      */
     private $comment;
+
+
+    /**
+     * Get guestbook_id
+     *
+     * @return integer 
+     */
+    public function getGuestbookId()
+    {
+        return $this->guestbook_id;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Guestbook
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return Guestbook
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string 
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
 }

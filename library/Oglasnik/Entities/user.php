@@ -1,74 +1,237 @@
 <?php
 
-namespace Oglasnik\Entities;;
+namespace Oglasnik\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * Oglasnik\Entities\User
  *
- * @Entity
- * @Table(name="user",
- *        uniqueConstraints={@UniqueConstraint(name="name_uk", columns={"name"})}
- * )
- * @HasLifecycleCallbacks
- *
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="name_uk", columns={"name"})})
+ * @ORM\Entity
  */
-class User 
+class User
 {
     /**
-     * @var integer
+     * @var integer $user_id
      *
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="user_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $user_id;
-    
+
     /**
-     * @var string
+     * @var string $username
      *
-     * @Column(type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $username;
 
     /**
-     * @var string
+     * @var string $password
      *
-     * @Column(type="string", length=128)
+     * @ORM\Column(name="password", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
     private $password;
 
     /**
-     * @var string
+     * @var string $email
      *
-     * @Column(type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $email;
-    
+
     /**
-     * @var string
+     * @var string $status
      *
-     * @Column(type="string", length=128)
+     * @ORM\Column(name="status", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
     private $status;
-    
+
     /**
-     * @var string
+     * @var string $name
      *
-     * @Column(type="string", length=128)
+     * @ORM\Column(name="name", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
     private $name;
-    
+
     /**
-     * @var string
+     * @var string $surname
      *
-     * @Column(type="string", length=128)
+     * @ORM\Column(name="surname", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
     private $surname;
-    
+
     /**
-     * @var string
+     * @var string $telephon
      *
-     * @Column(type="string", length=128)
+     * @ORM\Column(name="telephon", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
-    private $telephon;    
+    private $telephon;
+
+
+    /**
+     * Get user_id
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     * @return User
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string 
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * Set telephon
+     *
+     * @param string $telephon
+     * @return User
+     */
+    public function setTelephon($telephon)
+    {
+        $this->telephon = $telephon;
+        return $this;
+    }
+
+    /**
+     * Get telephon
+     *
+     * @return string 
+     */
+    public function getTelephon()
+    {
+        return $this->telephon;
+    }
 }

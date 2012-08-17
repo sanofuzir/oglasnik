@@ -15,7 +15,9 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
-//require_once('Doctrine/Common/ClassLoader.php');
+
+// Set up class loading
+    //require_once('Doctrine/Common/ClassLoader.php');
 
 $classLoader = new ClassLoader('Doctrine', realpath(APPLICATION_PATH . '/../library'));
 $classLoader->register();
@@ -26,9 +28,18 @@ $classLoader->register();
 
 $isDevMode = true;
 
+require_once('Zend/Config/ini.php');
+
 $config = new Zend_Config_Ini( APPLICATION_PATH . '/../application/configs/application.ini','development');
 
-$connectionOptions = $config->resources->doctrine->toArray();
+// Database connection information
+    $connectionOptions = array(
+        'driver' => 'pdo_mysql',
+        'dbname' => 'oglasnik',
+        'user' => 'user',
+        'password' => 'user',
+        'host' => 'localhost'
+        );
 
 $proxies = APPLICATION_PATH . '/../library/Oglasnik/Proxies';
 
@@ -36,6 +47,7 @@ $config = Setup::createAnnotationMetadataConfiguration(array(realpath(APPLICATIO
 
 $em = EntityManager::create($connectionOptions, $config); 
 
+//require_once('\Doctrine\Symfony\Component\Console\Helper\HelperSet.php');
 
 $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
     'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($em->getConnection()),
