@@ -2,8 +2,6 @@
 
 namespace Oglasnik\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Oglasnik\Entities\Image
  *
@@ -33,7 +31,7 @@ class Image
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\Ad")
      * @JoinColumns({
-     *   @JoinColumn(name="ad_id", referencedColumnName="id", nullable=false)
+     *   @JoinColumn(name="ad_id", referencedColumnName="ad_id", nullable=false)
      * })
      */
     private $ad_id;

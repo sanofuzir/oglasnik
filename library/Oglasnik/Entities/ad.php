@@ -2,8 +2,6 @@
 
 namespace Oglasnik\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Oglasnik\Entities\Ad
  *
@@ -61,7 +59,7 @@ class Ad
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\User")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     *   @JoinColumn(name="user_id", referencedColumnName="user_id", nullable=false)
      * })
      */
     private $user_id;
@@ -71,7 +69,7 @@ class Ad
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\Category")
      * @JoinColumns({
-     *   @JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     *   @JoinColumn(name="category_id", referencedColumnName="category_id", nullable=false)
      * })
      */
     private $category_id;

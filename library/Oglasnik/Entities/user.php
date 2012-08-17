@@ -2,8 +2,6 @@
 
 namespace Oglasnik\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Oglasnik\Entities\User
  *

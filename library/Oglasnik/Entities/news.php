@@ -2,8 +2,6 @@
 
 namespace Oglasnik\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Oglasnik\Entities\News
  *
@@ -47,7 +45,7 @@ class News
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\User")
      * @JoinColumns({
-     *   @JoinColumn(name="ad_id", referencedColumnName="id", nullable=false)
+     *   @JoinColumn(name="user_id", referencedColumnName="user_id", nullable=false)
      * })
      */
     private $user_id;
