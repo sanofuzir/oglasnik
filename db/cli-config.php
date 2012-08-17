@@ -33,13 +33,7 @@ require_once('Zend/Config/ini.php');
 $config = new Zend_Config_Ini( APPLICATION_PATH . '/../application/configs/application.ini','development');
 
 // Database connection information
-    $connectionOptions = array(
-        'driver' => 'pdo_mysql',
-        'dbname' => 'oglasnik',
-        'user' => 'user',
-        'password' => 'user',
-        'host' => 'localhost'
-        );
+$connectionOptions = $config->resources->doctrine->toArray();
 
 $proxies = APPLICATION_PATH . '/../library/Oglasnik/Proxies';
 

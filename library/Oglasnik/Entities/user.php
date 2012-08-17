@@ -7,66 +7,66 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Oglasnik\Entities\User
  *
- * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="name_uk", columns={"name"})})
- * @ORM\Entity
+ * @Table(name="user")
+ * @Entity
  */
 class User
 {
     /**
      * @var integer $user_id
      *
-     * @ORM\Column(name="user_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Column(name="user_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $user_id;
 
     /**
      * @var string $username
      *
-     * @ORM\Column(name="username", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="username", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $username;
 
     /**
      * @var string $password
      *
-     * @ORM\Column(name="password", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="password", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
     private $password;
 
     /**
      * @var string $email
      *
-     * @ORM\Column(name="email", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="email", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $email;
 
     /**
      * @var string $status
      *
-     * @ORM\Column(name="status", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="status", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
     private $status;
 
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="name", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
     private $name;
 
     /**
      * @var string $surname
      *
-     * @ORM\Column(name="surname", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="surname", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
     private $surname;
 
     /**
      * @var string $telephon
      *
-     * @ORM\Column(name="telephon", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="telephon", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
      */
     private $telephon;
 

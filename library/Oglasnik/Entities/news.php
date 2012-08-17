@@ -7,46 +7,46 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Oglasnik\Entities\News
  *
- * @ORM\Table(name="news", uniqueConstraints={@ORM\UniqueConstraint(name="name_uk", columns={"name"})})
- * @ORM\Entity
+ * @Table(name="news")
+ * @Entity
  */
 class News
 {
     /**
      * @var integer $news_id
      *
-     * @ORM\Column(name="news_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Column(name="news_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $news_id;
 
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $name;
 
     /**
      * @var string $text
      *
-     * @ORM\Column(name="text", type="string", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="text", type="string", precision=0, scale=0, nullable=false, unique=false)
      */
     private $text;
 
     /**
      * @var string $active
      *
-     * @ORM\Column(name="active", type="string", length=3, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="active", type="string", length=3, precision=0, scale=0, nullable=false, unique=false)
      */
     private $active;
 
     /**
      * @var Oglasnik\Entities\User
      *
-     * @ORM\ManyToOne(targetEntity="Oglasnik\Entities\User")
-     * @ORM\JoinColumns({
+     * @ManyToOne(targetEntity="Oglasnik\Entities\User")
+     * @JoinColumns({
      *   @ORM\JoinColumn(name="ad_id", referencedColumnName="id", nullable=false)
      * })
      */

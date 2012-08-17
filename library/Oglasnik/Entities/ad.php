@@ -7,59 +7,59 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Oglasnik\Entities\Ad
  *
- * @ORM\Table(name="ad", uniqueConstraints={@ORM\UniqueConstraint(name="name_uk", columns={"name"})})
- * @ORM\Entity
+ * @Table(name="ad")
+ * @Entity
  */
 class Ad
 {
     /**
      * @var integer $ad_id
      *
-     * @ORM\Column(name="ad_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Column(name="ad_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $ad_id;
 
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $name;
 
     /**
      * @var integer $price
      *
-     * @ORM\Column(name="price", type="integer", precision=0, scale=0, nullable=true, unique=false)
+     * @Column(name="price", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $price;
 
     /**
      * @var string $description
      *
-     * @ORM\Column(name="description", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="description", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $description;
 
     /**
      * @var string $status
      *
-     * @ORM\Column(name="status", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="status", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $status;
 
     /**
      * @var datetime $created
      *
-     * @ORM\Column(name="created", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="created", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $created;
 
     /**
      * @var Oglasnik\Entities\User
      *
-     * @ORM\ManyToOne(targetEntity="Oglasnik\Entities\User")
+     * @ManyToOne(targetEntity="Oglasnik\Entities\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
@@ -69,23 +69,12 @@ class Ad
     /**
      * @var Oglasnik\Entities\Category
      *
-     * @ORM\ManyToOne(targetEntity="Oglasnik\Entities\Category")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     * @ManyToOne(targetEntity="Oglasnik\Entities\Category")
+     * @JoinColumns({
+     *   @JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $category_id;
-
-    /**
-     * @var Oglasnik\Entities\Category
-     *
-     * @ORM\ManyToOne(targetEntity="Oglasnik\Entities\Category")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
-     * })
-     */
-    private $subcategory_id;
-
 
     /**
      * Get ad_id
@@ -251,25 +240,4 @@ class Ad
         return $this->category_id;
     }
 
-    /**
-     * Set subcategory_id
-     *
-     * @param Oglasnik\Entities\Category $subcategoryId
-     * @return Ad
-     */
-    public function setSubcategoryId(\Oglasnik\Entities\Category $subcategoryId)
-    {
-        $this->subcategory_id = $subcategoryId;
-        return $this;
-    }
-
-    /**
-     * Get subcategory_id
-     *
-     * @return Oglasnik\Entities\Category 
-     */
-    public function getSubcategoryId()
-    {
-        return $this->subcategory_id;
-    }
 }

@@ -7,33 +7,33 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Oglasnik\Entities\Image
  *
- * @ORM\Table(name="image", uniqueConstraints={@ORM\UniqueConstraint(name="name_uk", columns={"name"})})
- * @ORM\Entity
+ * @Table(name="image")
+ * @Entity
  */
 class Image
 {
     /**
      * @var integer $image_id
      *
-     * @ORM\Column(name="image_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Column(name="image_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $image_id;
 
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $name;
 
     /**
      * @var Oglasnik\Entities\Ad
      *
-     * @ORM\ManyToOne(targetEntity="Oglasnik\Entities\Ad")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ad_id", referencedColumnName="id", nullable=false)
+     * @ManyToOne(targetEntity="Oglasnik\Entities\Ad")
+     * @JoinColumns({
+     *   @JoinColumn(name="ad_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $ad_id;
