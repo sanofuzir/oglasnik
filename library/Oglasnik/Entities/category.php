@@ -2,8 +2,6 @@
 
 namespace Oglasnik\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Oglasnik\Entities\Category
  *
@@ -13,30 +11,30 @@ use Doctrine\ORM\Mapping as ORM;
 class Category
 {
     /**
-     * @var integer $category_id
+     * @var integer $id
      *
-     * @Column(name="category_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="id", type="integer", nullable=false, unique=true)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    private $category_id;
+    private $id;
 
     /**
      * @var string $name
      *
-     * @Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="name", type="string", length=255)
      */
     private $name;
 
 
     /**
-     * Get category_id
+     * Get id
      *
      * @return integer 
      */
-    public function getCategoryId()
+    public function getId()
     {
-        return $this->category_id;
+        return $this->id;
     }
 
     /**

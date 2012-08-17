@@ -11,46 +11,46 @@ namespace Oglasnik\Entities;
 class Ad
 {
     /**
-     * @var integer $ad_id
+     * @var integer $id
      *
-     * @Column(name="ad_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="id", type="integer", nullable=false, unique=true)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    private $ad_id;
+    private $id;
 
     /**
      * @var string $name
      *
-     * @Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
-     * @var integer $price
+     * @var decimal $price
      *
-     * @Column(name="price", type="integer", precision=0, scale=0, nullable=true, unique=false)
+     * @Column(name="price", type="decimal", precision=12, scale=2, nullable=false)
      */
     private $price;
 
     /**
      * @var string $description
      *
-     * @Column(name="description", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var string $status
      *
-     * @Column(name="status", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="status", type="string", length=3)
      */
     private $status;
 
     /**
      * @var datetime $created
      *
-     * @Column(name="created", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="created", type="datetime", nullable=false)
      */
     private $created;
 
@@ -59,30 +59,30 @@ class Ad
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\User")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="user_id", nullable=false)
+     *   @JoinColumn(name="user", referencedColumnName="id", nullable=false)
      * })
      */
-    private $user_id;
+    private $user;
 
     /**
      * @var Oglasnik\Entities\Category
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\Category")
      * @JoinColumns({
-     *   @JoinColumn(name="category_id", referencedColumnName="category_id", nullable=false)
+     *   @JoinColumn(name="category", referencedColumnName="id", nullable=false)
      * })
      */
-    private $category_id;
+    private $category;
 
 
     /**
-     * Get ad_id
+     * Get id
      *
      * @return integer 
      */
-    public function getAdId()
+    public function getId()
     {
-        return $this->ad_id;
+        return $this->id;
     }
 
     /**
@@ -110,7 +110,7 @@ class Ad
     /**
      * Set price
      *
-     * @param integer $price
+     * @param decimal $price
      * @return Ad
      */
     public function setPrice($price)
@@ -122,7 +122,7 @@ class Ad
     /**
      * Get price
      *
-     * @return integer 
+     * @return decimal 
      */
     public function getPrice()
     {
@@ -196,46 +196,46 @@ class Ad
     }
 
     /**
-     * Set user_id
+     * Set user
      *
-     * @param Oglasnik\Entities\User $userId
+     * @param Oglasnik\Entities\User $user
      * @return Ad
      */
-    public function setUserId(\Oglasnik\Entities\User $userId)
+    public function setUser(\Oglasnik\Entities\User $user)
     {
-        $this->user_id = $userId;
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * Get user_id
+     * Get user
      *
      * @return Oglasnik\Entities\User 
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->user_id;
+        return $this->user;
     }
 
     /**
-     * Set category_id
+     * Set category
      *
-     * @param Oglasnik\Entities\Category $categoryId
+     * @param Oglasnik\Entities\Category $category
      * @return Ad
      */
-    public function setCategoryId(\Oglasnik\Entities\Category $categoryId)
+    public function setCategory(\Oglasnik\Entities\Category $category)
     {
-        $this->category_id = $categoryId;
+        $this->category = $category;
         return $this;
     }
 
     /**
-     * Get category_id
+     * Get category
      *
      * @return Oglasnik\Entities\Category 
      */
-    public function getCategoryId()
+    public function getCategory()
     {
-        return $this->category_id;
+        return $this->category;
     }
 }

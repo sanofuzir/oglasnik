@@ -10,7 +10,7 @@ class GuestbookController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        require_once '../application/modules/default/forms/Guestbook.php';
+        require_once '../application/forms/Guestbook.php';
         $form    = new Default_Form_Guestbook();
  
         $this->view->form = $form;

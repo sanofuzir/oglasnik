@@ -11,32 +11,32 @@ namespace Oglasnik\Entities;
 class News
 {
     /**
-     * @var integer $news_id
+     * @var integer $id
      *
-     * @Column(name="news_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="id", type="integer", nullable=false, unique=true)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    private $news_id;
+    private $id;
 
     /**
      * @var string $name
      *
-     * @Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
-     * @var string $text
+     * @var text $text
      *
-     * @Column(name="text", type="string", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="text", type="text")
      */
     private $text;
 
     /**
      * @var string $active
      *
-     * @Column(name="active", type="string", length=3, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="active", type="string", length=3)
      */
     private $active;
 
@@ -45,20 +45,20 @@ class News
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\User")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="user_id", nullable=false)
+     *   @JoinColumn(name="id", referencedColumnName="id", nullable=false)
      * })
      */
-    private $user_id;
+    private $user;
 
 
     /**
-     * Get news_id
+     * Get id
      *
      * @return integer 
      */
-    public function getNewsId()
+    public function getId()
     {
-        return $this->news_id;
+        return $this->id;
     }
 
     /**
@@ -86,7 +86,7 @@ class News
     /**
      * Set text
      *
-     * @param string $text
+     * @param text $text
      * @return News
      */
     public function setText($text)
@@ -98,7 +98,7 @@ class News
     /**
      * Get text
      *
-     * @return string 
+     * @return text 
      */
     public function getText()
     {
@@ -128,24 +128,24 @@ class News
     }
 
     /**
-     * Set user_id
+     * Set user
      *
-     * @param Oglasnik\Entities\User $userId
+     * @param Oglasnik\Entities\User $user
      * @return News
      */
-    public function setUserId(\Oglasnik\Entities\User $userId)
+    public function setUser(\Oglasnik\Entities\User $user)
     {
-        $this->user_id = $userId;
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * Get user_id
+     * Get user
      *
      * @return Oglasnik\Entities\User 
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->user_id;
+        return $this->user;
     }
 }

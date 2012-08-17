@@ -11,72 +11,72 @@ namespace Oglasnik\Entities;
 class User
 {
     /**
-     * @var integer $user_id
+     * @var integer $id
      *
-     * @Column(name="user_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="id", type="integer", nullable=false, unique=true)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    private $user_id;
+    private $id;
 
     /**
      * @var string $username
      *
-     * @Column(name="username", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="username", type="string", length=255, nullable=false, unique=true)
      */
     private $username;
 
     /**
      * @var string $password
      *
-     * @Column(name="password", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="password", type="string", length=128, nullable=false)
      */
     private $password;
 
     /**
      * @var string $email
      *
-     * @Column(name="email", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="email", type="string", length=255, nullable=false, unique=false)
      */
     private $email;
 
     /**
      * @var string $status
      *
-     * @Column(name="status", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="status", type="string", length=10, nullable=false)
      */
     private $status;
 
     /**
      * @var string $name
      *
-     * @Column(name="name", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="name", type="string", length=128)
      */
     private $name;
 
     /**
      * @var string $surname
      *
-     * @Column(name="surname", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="surname", type="string", length=128)
      */
     private $surname;
 
     /**
      * @var string $telephon
      *
-     * @Column(name="telephon", type="string", length=128, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="telephon", type="string", length=128)
      */
     private $telephon;
 
 
     /**
-     * Get user_id
+     * Get id
      *
      * @return integer 
      */
-    public function getUserId()
+    public function getId()
     {
-        return $this->user_id;
+        return $this->id;
     }
 
     /**

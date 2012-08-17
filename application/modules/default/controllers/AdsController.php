@@ -86,21 +86,21 @@ class AdsController extends Zend_Controller_Action
     }
     public function addAction()
     {
-        require_once '../application/modules/default/forms/Add.php';
+        require_once '../application/forms/Add.php';
         $form    = new Default_Form_Add();
  
         $this->view->form = $form;
     }
     public function editAction()
     {
-        require_once '../application/modules/default/forms/Edit.php';
+        require_once '../application/forms/Edit.php';
         $form    = new Default_Form_Add();
  
         $this->view->form = $form;
     }
     public function deleteAction()
     {
-        require_once '../application/modules/default/forms/Delete.php';
+        require_once '../application/forms/Delete.php';
         $form    = new Default_Form_Add();
  
         $this->view->form = $form;

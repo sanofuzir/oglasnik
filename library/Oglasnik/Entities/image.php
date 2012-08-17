@@ -11,18 +11,18 @@ namespace Oglasnik\Entities;
 class Image
 {
     /**
-     * @var integer $image_id
+     * @var integer $id
      *
-     * @Column(name="image_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="id", type="integer", nullable=false, unique=true)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    private $image_id;
+    private $id;
 
     /**
      * @var string $name
      *
-     * @Column(name="name", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="name", type="string", length=255)
      */
     private $name;
 
@@ -31,20 +31,20 @@ class Image
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\Ad")
      * @JoinColumns({
-     *   @JoinColumn(name="ad_id", referencedColumnName="ad_id", nullable=false)
+     *   @JoinColumn(name="id", referencedColumnName="id", nullable=false)
      * })
      */
-    private $ad_id;
+    private $ad;
 
 
     /**
-     * Get image_id
+     * Get id
      *
      * @return integer 
      */
-    public function getImageId()
+    public function getId()
     {
-        return $this->image_id;
+        return $this->id;
     }
 
     /**
@@ -70,24 +70,24 @@ class Image
     }
 
     /**
-     * Set ad_id
+     * Set ad
      *
-     * @param Oglasnik\Entities\Ad $adId
+     * @param Oglasnik\Entities\Ad $ad
      * @return Image
      */
-    public function setAdId(\Oglasnik\Entities\Ad $adId)
+    public function setAd(\Oglasnik\Entities\Ad $ad)
     {
-        $this->ad_id = $adId;
+        $this->ad = $ad;
         return $this;
     }
 
     /**
-     * Get ad_id
+     * Get ad
      *
      * @return Oglasnik\Entities\Ad 
      */
-    public function getAdId()
+    public function getAd()
     {
-        return $this->ad_id;
+        return $this->ad;
     }
 }
