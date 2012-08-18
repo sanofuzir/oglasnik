@@ -10,6 +10,20 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         return $moduleLoader;        
         
-    }    
+    }
+    protected function _initRoutes() 
+    {
+        
+        $frontController = Zend_Controller_Front::getInstance();
+        
+        $router = $frontController->getRouter();
+        
+        $viewRoute = new Zend_Controller_Router_Route('ads/:category',
+                                     array('controller' => 'ad',
+                                           'action' => 'view'));
+  
+    }
+
+  
 }
 

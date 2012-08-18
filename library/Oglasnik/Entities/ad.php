@@ -75,7 +75,6 @@ class Ad
     
     private $category;
 
-
     /**
      * Get id
      *
@@ -239,4 +238,5 @@ class Ad
     {
         return $this->category;
     }
+
 }

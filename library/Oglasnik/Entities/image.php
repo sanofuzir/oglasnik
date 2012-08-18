@@ -25,17 +25,17 @@ class Image
      * @Column(name="name", type="string", length=255)
      */
     private $name;
-
+    
     /**
      * @var Oglasnik\Entities\Ad
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\Ad", inversedBy="images")
      * @JoinColumns({
-     *   @JoinColumn(name="id", referencedColumnName="id", nullable=false)
+     *   @JoinColumn(name="ad", referencedColumnName="id", nullable=false)
      * })
      */
+    
     private $ad;
-
 
     /**
      * Get id

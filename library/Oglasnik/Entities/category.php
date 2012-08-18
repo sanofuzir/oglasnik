@@ -18,6 +18,13 @@ class Category
      * @GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+    
+    /**
+     * @var string $title
+     *
+     * @Column(name="title", type="string", length=255)
+     */
+    private $title;
 
     /**
      * @var string $name

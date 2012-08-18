@@ -39,17 +39,17 @@ class News
      * @Column(name="active", type="string", length=3)
      */
     private $active;
-
+    
     /**
      * @var Oglasnik\Entities\User
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\User", inversedBy="news")
      * @JoinColumns({
-     *   @JoinColumn(name="id", referencedColumnName="id", nullable=false)
+     *   @JoinColumn(name="user", referencedColumnName="id", nullable=false)
      * })
      */
+    
     private $user;
-
 
     /**
      * Get id
