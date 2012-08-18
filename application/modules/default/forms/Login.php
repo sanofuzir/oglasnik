@@ -1,6 +1,6 @@
 <?php
 
-class Default_Form_Login extends Zend_Form
+class Form_Login extends Zend_Form
 {
 
     public function init()

@@ -43,7 +43,7 @@ class News
     /**
      * @var Oglasnik\Entities\User
      *
-     * @ManyToOne(targetEntity="Oglasnik\Entities\User")
+     * @ManyToOne(targetEntity="Oglasnik\Entities\User", inversedBy="news")
      * @JoinColumns({
      *   @JoinColumn(name="id", referencedColumnName="id", nullable=false)
      * })

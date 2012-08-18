@@ -16,16 +16,14 @@ class AccountController extends Zend_Controller_Action
 
     public function registerAction()
     {
-        require_once '../application/forms/Registration.php';
-        $form    = new Default_Form_Registration();
+        $form    = new Form_Register();
  
         $this->view->form = $form;
     }
 
     public function loginAction()
     {
-        require_once '../application/forms/login.php';
-        $form    = new Default_Form_Login();
+        $form    = new Form_Login();
  
         $this->view->form = $form;
     }

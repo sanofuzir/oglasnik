@@ -29,7 +29,7 @@ class Image
     /**
      * @var Oglasnik\Entities\Ad
      *
-     * @ManyToOne(targetEntity="Oglasnik\Entities\Ad")
+     * @ManyToOne(targetEntity="Oglasnik\Entities\Ad", inversedBy="images")
      * @JoinColumns({
      *   @JoinColumn(name="id", referencedColumnName="id", nullable=false)
      * })

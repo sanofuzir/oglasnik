@@ -1,6 +1,6 @@
 <?php
 
-class Default_Form_Add extends Zend_Form
+class Form_Delete extends Zend_Form
 {
 
     public function init()

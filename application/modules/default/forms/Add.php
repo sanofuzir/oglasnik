@@ -1,6 +1,6 @@
 <?php
 
-class Default_Form_Add extends Zend_Form
+class Form_Add extends Zend_Form
 {
 
     public function init()
@@ -35,16 +35,6 @@ class Default_Form_Add extends Zend_Form
             'filters'    => array('StringTrim'),
             'validators' => array(
                 'category',
-            )
-        ));
-        
-        // Add an subcategory element
-        $this->addElement('text', 'subcategory', array(
-            'label'      => 'Pod-kategorija:',
-            'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'subcategory',
             )
         ));
         

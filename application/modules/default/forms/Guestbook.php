@@ -1,6 +1,6 @@
 <?php
 
-class Default_Form_Guestbook extends Zend_Form
+class Form_Guestbook extends Zend_Form
 {
     public function init()
     {

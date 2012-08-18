@@ -8,8 +8,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                         'namespace' => '',
                         'basePath' => APPLICATION_PATH . '/modules/default'));
 
-        return $moduleLoader;
-    }
-
+        return $moduleLoader;        
+        
+    }    
 }
 
