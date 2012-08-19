@@ -1,0 +1,27 @@
+<div id="content">
+    <div id="view-content">
+        <div id="ads">
+            <!-- Izpis oglasov -->
+            <h2 id="ads_h2">Podatki o uporabniku:</h2>
+            <br />
+            <?php foreach ($this->users as $user): ?>
+                <div>
+                        Username:            
+                        <?php echo $user->getUsername();?><br/> 
+                        Email:
+                        <?php echo $user->getEmail();?><br/>
+                        Status:
+                        <?php echo $user->getStatus();?><br/>
+                        Name:
+                        <?php echo $user->getName();?><br/>
+                        Surname:
+                        <?php echo $user->getSurname();?><br/>
+                        Telephon:
+                        <?php echo $user->getTelephon();?><br/>
+                        <br />                  
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+

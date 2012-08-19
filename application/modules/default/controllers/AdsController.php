@@ -25,7 +25,7 @@ class AdsController extends Zend_Controller_Action
     {
         setlocale(LC_ALL, 'sl_SI');
         $cur_id = $this->_getParam('id');
-        $id = $this->_em->getRepository('Oglasnik\Entities\Ad')->findOneByName($cur_id);
+        $id = $this->_em->getRepository('Oglasnik\Entities\Ad')->findOneById($cur_id);
         $this->view->id = $id->getId();
         $this->view->ad = $id->getAd();
     }
