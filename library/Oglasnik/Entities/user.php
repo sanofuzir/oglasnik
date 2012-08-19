@@ -68,6 +68,14 @@ class User
      */
     private $telephon;
 
+    /**
+     * @OneToMany(targetEntity="Oglasnik\Entities\Ad", mappedBy="user")
+     **/
+    private $ads;
+
+    public function __construct() {
+        $this->ads = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id

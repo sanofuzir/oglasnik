@@ -34,6 +34,15 @@ class Category
     private $name;
 
     /**
+     * @OneToMany(targetEntity="Oglasnik\Entities\Ad", mappedBy="category")
+     **/
+    private $ads;
+
+    public function __construct() {
+        $this->ads = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -63,5 +72,18 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getNumberOfAds() 
+    {
+        return $this->ads->count();
+    }
+
+    /**
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAds()
+    {
+        return $this->ads;
     }
 }

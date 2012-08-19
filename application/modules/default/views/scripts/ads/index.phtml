@@ -1,27 +1,25 @@
 <div id="content">
     <div id="view-content">
         <div id="ads">
-            <a href="<?php echo $this->url(
+            <!-- Izpis oglasov -->
+            <h2 id="ads_h2">Oglasi v kategoriji <?php echo $this->category; ?>:</h2>
+            <br />
+            <?php foreach ($this->ads as $ad): ?>
+                <div>
+                    <a href="<?php echo $this->url(
                                     array(
                                         'controller' => 'ads',
-                                        'action'     => 'add',
+                                        'action'     => 'view',
                                         'module' => 'default'
                                     ),
                                     'default',
-                                    true) ?>">
-                <img src="/img/add.png" alt="add">
-                <span>Dodajanje oglasov</span>
-            </a>
-            <br />
-            <!-- Izpis oglasov -->
-            <h2 id="ads_h2">Oglasi:</h2>
-            <?php
-            $category=$this->_getParam('category');
-            $this->_em->getRepository('pot do repositoryja')->findByName($category);
-            
-            
-            ?>
-            
+                                    true) ?>" />
+                        <?php echo $ad->getName();?> -  
+                        <?php echo $ad->getPrice()."€";?>
+                        <br />
+                    </a>                    
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

@@ -1,0 +1,24 @@
+<div id="content">
+    <div id="view-content">
+        <div id="ads">
+            <!-- Izpis oglasov -->
+            <h2 id="ads_h2">Oglasi <?php echo $this->id; ?>:</h2>
+            
+            <?php foreach ($this->id as $id): ?>
+                <div>
+                    Ime:
+                        <?php echo $id->getName();?> <br />
+                    Cena:
+                        <?php echo $id->getPrice()."€";?> <br />
+                    Opis:
+                        <?php echo $id->getDescription();?> <br />
+                    Datum:
+                        <?php echo $id->getCreated();?> <br />
+                    Slika:
+                        <img src="images/<?php echo $ad->getImage()->getName()?>" alt="slika">
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+

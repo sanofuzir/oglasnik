@@ -58,9 +58,7 @@ class Ad
      * @var Oglasnik\Entities\User
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\User", inversedBy="ads")
-     * @JoinColumns({
-     *   @JoinColumn(name="user", referencedColumnName="id", nullable=false)
-     * })
+     * @JoinColumn(name="user", referencedColumnName="id", nullable=false)
      */
     private $user;
 
@@ -68,12 +66,16 @@ class Ad
      * @var Oglasnik\Entities\Category
      *
      * @ManyToOne(targetEntity="Oglasnik\Entities\Category", inversedBy="ads")
-     * @JoinColumns({
-     *   @JoinColumn(name="category", referencedColumnName="id", nullable=false)
-     * })
+     * @JoinColumn(name="category", referencedColumnName="id", nullable=false)
      */
-    
     private $category;
+
+
+     /**
+     * @OneToOne(targetEntity="Oglasnik\Entities\Image")
+     * @JoinColumn(name="image", referencedColumnName="id")
+     **/
+    private $image;
 
     /**
      * Get id

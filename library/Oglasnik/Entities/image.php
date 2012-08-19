@@ -25,17 +25,6 @@ class Image
      * @Column(name="name", type="string", length=255)
      */
     private $name;
-    
-    /**
-     * @var Oglasnik\Entities\Ad
-     *
-     * @ManyToOne(targetEntity="Oglasnik\Entities\Ad", inversedBy="images")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad", referencedColumnName="id", nullable=false)
-     * })
-     */
-    
-    private $ad;
 
     /**
      * Get id
@@ -67,27 +56,5 @@ class Image
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set ad
-     *
-     * @param Oglasnik\Entities\Ad $ad
-     * @return Image
-     */
-    public function setAd(\Oglasnik\Entities\Ad $ad)
-    {
-        $this->ad = $ad;
-        return $this;
-    }
-
-    /**
-     * Get ad
-     *
-     * @return Oglasnik\Entities\Ad 
-     */
-    public function getAd()
-    {
-        return $this->ad;
     }
 }
