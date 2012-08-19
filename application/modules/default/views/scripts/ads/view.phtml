@@ -4,16 +4,16 @@
             <!-- Izpis oglasov -->
             <h2 id="ads_h2">Oglasi <?php echo $this->id; ?>:</h2>
             
-            <?php foreach ($this->id as $id): ?>
+            <?php foreach ($this->ads as $ad): ?>
                 <div>
                     Ime:
-                        <?php echo $id->getName();?> <br />
+                        <?php echo $ad->getName();?> <br />
                     Cena:
-                        <?php echo $id->getPrice()."€";?> <br />
+                        <?php echo $ad->getPrice()."€";?> <br />
                     Opis:
-                        <?php echo $id->getDescription();?> <br />
+                        <?php echo $ad->getDescription();?> <br />
                     Datum:
-                        <?php echo $id->getCreated();?> <br />
+                        <?php echo $ad->getCreated();?> <br />
                     Slika:
                         <img src="images/<?php echo $ad->getImage()->getName()?>" alt="slika">
                 </div>
