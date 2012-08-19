@@ -9,31 +9,19 @@
                                     ),
                                     'default',
                                     true) ?>">
-                <h2>Dodajanje oglasov</h2>
                 <img src="/img/add.png" alt="add">
+                <span>Dodajanje oglasov</span>
             </a>
-            <a href="<?php echo $this->url(
-                                    array(
-                                        'controller' => 'ads',
-                                        'action'     => 'edit',
-                                        'module' => 'default'
-                                    ),
-                                    'default',
-                                    true) ?>">
-                <h2>Urejanje oglasov</h2>
-                <img src="/img/edit.png" alt="edit">
-            </a>
-            <a href="<?php echo $this->url(
-                                    array(
-                                        'controller' => 'ads',
-                                        'action'     => 'delete',
-                                        'module' => 'default'
-                                    ),
-                                    'default',
-                                    true) ?>">
-                <h2>Brisanje oglasov</h2>
-                <img src="/img/delete.png" alt="delete">
-            </a>
+            <br />
+            <!-- Izpis oglasov -->
+            <h2 id="ads_h2">Oglasi:</h2>
+            <?php
+            $category=$this->_getParam('category');
+            $this->_em->getRepository('pot do repositoryja')->findByName($category);
+            
+            
+            ?>
+            
         </div>
     </div>
 </div>

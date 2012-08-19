@@ -15,6 +15,7 @@ class Oglasnik_Application_Resource_Doctrine extends Zend_Application_Resource_R
      *
      * @return Doctrine\ORM\EntityManager
      */
+
     public function init()
     {
         $config = $this->getOptions();
