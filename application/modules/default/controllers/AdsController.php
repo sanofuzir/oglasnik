@@ -27,6 +27,7 @@ class AdsController extends Zend_Controller_Action
         $cur_id = $this->_getParam('id');
         $ad = $this->_em->getRepository('Oglasnik\Entities\Ad')->find($cur_id);
         $this->view->ad = $ad;
+        
         /*
         $this->view->ad = $ad->getId();
         $this->view->name = $ad->getName();
