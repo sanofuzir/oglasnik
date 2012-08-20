@@ -54,9 +54,42 @@ class AccountController extends Zend_Controller_Action
     }
     public function addAction()
     {
-        $form    = new Form_Add();
- 
-        $this->view->form = $form;
+        //forma
+        //$form    = new Form_Add(); 
+        //$this->view->form = $form;
+        
+        //dodajanje oglasa
+        /*
+        $ad = new Ad;
+        $user_id = $this->_getParam('id');
+        $user = $em->getRepository('Oglasnik\Entities\User')->find($user_id);
+        echo 
+         * 
+         */
+        /*
+        $ad->setUser('Mr.Right');
+        $category = $em->getRepository('Oglasnik\Entities\Category')->find($id);
+        $ad->setCategory('Mr.Right');
+        $ad->setPrice('Mr.Right');
+        $ad->setDescription('Mr.Right');
+        $ad->setStatus('Mr.Right');
+        $ad->setCreated('Mr.Right');
+        $image = $em->getRepository('Oglasnik\Entities\Image')->find($id);
+        $ad->setimage('Mr.Right');
+        $em->persist($ad);
+        $em->flush();
+
+        $img = new Image(); 
+        $img->setName('img.jpg'); 
+        $cat = $em->getRe.....find($idcat); 
+        $user = $em->getRep.....find($iduser); 
+        
+        $ad = new Ad(); 
+        $ad->setName('ime oglasa'); 
+        $ad->setImage($img); 
+        $ad->setCategory($cat);
+         * 
+         */
 
     }
     public function editAction()
