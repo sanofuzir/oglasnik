@@ -8,9 +8,11 @@
                 <div>
                     <a href="<?php echo $this->url(
                                     array(
+                                        'module' => 'default',
                                         'controller' => 'ads',
                                         'action'     => 'view',
-                                        'module' => 'default'
+                                        'id' => $ad->getId()
+                                        
                                     ),
                                     'default',
                                     true) ?>" />

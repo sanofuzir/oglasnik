@@ -49,8 +49,14 @@ body {
     margin-left: 30px;
 }
 #ads img {
-    width: 25px;
+    width: 200px;
     margin-top: -5px;
+}
+#ads ul {
+    list-style-type: none;
+}
+#ads li {
+    padding: 10px;
 }
 #ads span {
     font-size: 1.3em;
@@ -59,6 +65,10 @@ body {
 #ads_h2 {
     margin-left: 30px;
     color: #0088cc;
+}
+.podatki {
+    font-size: 1.2em;
+    color: #0480be;
 }
 #view-content-form {
      margin-top: -50px;

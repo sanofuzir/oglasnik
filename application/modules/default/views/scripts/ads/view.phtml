@@ -2,23 +2,33 @@
     <div id="view-content">
         <div id="ads">
             <!-- Izpis oglasov -->
-            <h2 id="ads_h2">Oglasi <?php echo $this->id; ?>:</h2>
-            
-            <?php foreach ($this->ads as $ad): ?>
-                <div>
-                    Ime:
-                        <?php echo $ad->getName();?> <br />
-                    Cena:
-                        <?php echo $ad->getPrice()."€";?> <br />
-                    Opis:
-                        <?php echo $ad->getDescription();?> <br />
-                    Datum:
-                        <?php echo $ad->getCreated();?> <br />
-                    Slika:
-                        <img src="images/<?php echo $ad->getImage()->getName()?>" alt="slika">
-                </div>
-            <?php endforeach; ?>
+            <h2 id="ads_h2">Oglasi <?php echo "id:".$this->id; ?></h2>          
+                <ul>
+                    <li>
+                        <span class="podatki">Ime:</span> 
+                            <?php echo $this->name;?>
+                    </li>
+                    <li>
+                        <span class="podatki">Cena:</span>
+                            <?php echo $this->price." €";?>
+                    </li>
+                    <li>
+                        <span class="podatki">Opis: </span>
+                            <?php echo $this->description;?>
+                    </li>
+                    <li>
+                        <span class="podatki">Datum:</span>
+                            <?php echo date_format($this->creation_date, "d.m.Y"); ?>
+                    </li>
+                    <li><span class="podatki">Slike:</span><br /><br />
+                        <a href="/img/<?php echo $this->image; ?>" />
+                            <img src="/img/<?php echo $this->image; ?>" alt="slika">
+                        </a>
+                    </li>
+                        
+                </ul>
         </div>
     </div>
 </div>
+
 
