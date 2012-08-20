@@ -25,16 +25,20 @@ class AdsController extends Zend_Controller_Action
     {
         setlocale(LC_ALL, 'sl_SI');
         $cur_id = $this->_getParam('id');
-        $id = $this->_em->getRepository('Oglasnik\Entities\Ad')->find($cur_id);
-        $this->view->id = $id->getId();
-        $this->view->name = $id->getName();
-        $this->view->price = $id->getPrice();
-        $this->view->description = $id->getDescription();
-        $this->view->creation_date = $id->getCreated();
+        $ad = $this->_em->getRepository('Oglasnik\Entities\Ad')->find($cur_id);
+        $this->view->ad = $ad;
+        /*
+        $this->view->ad = $ad->getId();
+        $this->view->name = $ad->getName();
+        $this->view->price = $ad->getPrice();
+        $this->view->description = $ad->getDescription();
+        $this->view->creation_date = $ad->getCreated();
         
         $image_id = $this->_getParam('id');
         $image = $this->_em->getRepository('Oglasnik\Entities\Image')->find($image_id);
         $this->view->image = $image->getName();
+         * 
+         */
     }
 
     public function addAction()

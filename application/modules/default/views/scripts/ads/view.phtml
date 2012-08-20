@@ -2,27 +2,27 @@
     <div id="view-content">
         <div id="ads">
             <!-- Izpis oglasov -->
-            <h2 id="ads_h2">Oglasi <?php echo "id:".$this->id; ?></h2>          
+            <h2 id="ads_h2">Oglasi <?php echo "id:".$this->ad->getId(); ?></h2>          
                 <ul>
                     <li>
                         <span class="podatki">Ime:</span> 
-                            <?php echo $this->name;?>
+                            <?php echo $this->ad->getName();;?>
                     </li>
                     <li>
                         <span class="podatki">Cena:</span>
-                            <?php echo $this->price." €";?>
+                            <?php echo $this->ad->getPrice()." €";?>
                     </li>
                     <li>
                         <span class="podatki">Opis: </span>
-                            <?php echo $this->description;?>
+                            <?php echo $this->ad->getDescription();;?>
                     </li>
                     <li>
                         <span class="podatki">Datum:</span>
-                            <?php echo date_format($this->creation_date, "d.m.Y"); ?>
+                            <?php echo date_format($this->ad->getCreated(), "d.m.Y"); ?>
                     </li>
                     <li><span class="podatki">Slike:</span><br /><br />
-                        <a href="/img/<?php echo $this->image; ?>" />
-                            <img src="/img/<?php echo $this->image; ?>" alt="slika">
+                        <a href="/img/<?php echo $this->ad->getImage()->getName(); ?>" />
+                            <img src="/img/<?php echo $this->ad->getImage()->getName(); ?>" alt="slika">
                         </a>
                     </li>
                         

@@ -240,5 +240,25 @@ class Ad
     {
         return $this->category;
     }
+    /**
+     * Set image
+     *
+     * @param Oglasnik\Entities\Image $image
+     * @return Ad
+     */
+    public function setImage(\Oglasnik\Entities\Image $image)
+    {
+        $this->image = $image;
+        return $this;
+    }
+    /**
+     * Get image
+     *
+     * @return Oglasnik\Entities\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 
 }
