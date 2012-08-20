@@ -44,6 +44,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         'action' => 'profil'));
         $list_router->addRoute('viewlist',$list_Route);
         
+        //pot za ogled oglasov uporabnika
+        $ads_list_router = $frontController->getRouter();
+
+        $ads_list_Route = new Zend_Controller_Router_Route('account/list/:id',
+        array('module' => 'default',
+        'controller' => 'account',
+        'action' => 'list'));
+        $ads_list_router->addRoute('viewadslist',$ads_list_Route);
+        
         //pot za registracijo uporabnika
         $register_router = $frontController->getRouter();
 

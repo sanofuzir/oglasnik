@@ -13,16 +13,26 @@ class AccountController extends Zend_Controller_Action
     }
 
     public function indexAction()
+    {        
+        //index action
+    }
+    public function listAction()
     {
-        // action body
+        //podatki o uporabniku
+        $cur_user = $this->_getParam('id');
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneById($cur_user);
+        $this->view->user = $user;
+        
+        //oglasi uporabnika
+        setlocale(LC_ALL, 'sl_SI');
+        $ads = $this->_em->getRepository('Oglasnik\Entities\Ad')->findOneById($cur_user);
+        $this->view->ads = $user->getAds();
     }
     public function profilAction()
     {
         $cur_user = $this->_getParam('id');
         $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneById($cur_user);
-        $this->view->user = $user->getId();
-        $this->view->users = $user->getUser();
-        
+        $this->view->user = $user;        
     }
 
     public function registerAction()
@@ -42,7 +52,24 @@ class AccountController extends Zend_Controller_Action
     {
         // action body
     }
+    public function addAction()
+    {
+        $form    = new Form_Add();
+ 
+        $this->view->form = $form;
 
+    }
+    public function editAction()
+    {
+        $form    = new Form_Add();
+ 
+        $this->view->form = $form;
+
+    }
+    public function deleteAction()
+    {
+
+    }
 
 }
 

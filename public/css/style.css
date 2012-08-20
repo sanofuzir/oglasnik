@@ -16,7 +16,7 @@ body {
 }
 #content {
     padding: 50px;
-    margin: -600px 0px 0px 27%;
+    margin: -530px 0px 0px 27%;
 }
 #profile {
     font-size: .9em;
@@ -74,4 +74,30 @@ body {
      margin-top: -50px;
      width: 400px;
      font-size: 1.1em;
+}
+.ads_add {
+    font-size: 1.4em;
+}
+#user_ads {
+    margin-top: 40px;
+    color: #0088cc;
+}
+.list {
+    font-size: 1.1em;
+    color: #0088cc;
+}
+#list {
+    margin-top: 50px;
+    margin-left: 10px;
+    list-style-type: none;
+    font-size: 1.1em;
+    background-color: #CBE0FB;
+}
+#list td {
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#list img {
+    width: 200px;
 }

@@ -135,6 +135,18 @@ class User extends \Oglasnik\Entities\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getTelephon();
     }
 
+    public function getNumberOfAds()
+    {
+        $this->__load();
+        return parent::getNumberOfAds();
+    }
+
+    public function getAds()
+    {
+        $this->__load();
+        return parent::getAds();
+    }
+
 
     public function __sleep()
     {

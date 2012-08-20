@@ -2,26 +2,33 @@
     <div id="view-content">
         <div id="ads">
             <!-- Izpis oglasov -->
-            <h2 id="ads_h2">Podatki o uporabniku:</h2>
-            <br />
-            <?php foreach ($this->users as $user): ?>
-                <div>
-                        Username:            
-                        <?php echo $user->getUsername();?><br/> 
-                        Email:
-                        <?php echo $user->getEmail();?><br/>
-                        Status:
-                        <?php echo $user->getStatus();?><br/>
-                        Name:
-                        <?php echo $user->getName();?><br/>
-                        Surname:
-                        <?php echo $user->getSurname();?><br/>
-                        Telephon:
-                        <?php echo $user->getTelephon();?><br/>
-                        <br />                  
-                </div>
-            <?php endforeach; ?>
+            <h2 id="ads_h2">Profil Uporabnika id: <?php echo $this->user->getId(); ?></h2>          
+                <ul>
+                    <li>
+                        <span class="podatki">Username:</span> 
+                            <?php echo $this->user->getUsername();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Email:</span>
+                            <?php echo $this->user->getEmail();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Status: </span>
+                            <?php echo $this->user->getStatus();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Name: </span>
+                            <?php echo $this->user->getName();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Surname: </span>
+                            <?php echo $this->user->getSurname();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Telephon: </span>
+                            <?php echo $this->user->getTelephon();?>
+                    </li>
+                </ul>
         </div>
     </div>
 </div>
-

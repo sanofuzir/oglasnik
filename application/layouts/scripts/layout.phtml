@@ -65,9 +65,11 @@
             <ul class="dropdown-menu">
               <li><a href="<?php echo $this->url(
                                     array(
+                                        'module' => 'default',
                                         'controller' => 'account',
                                         'action'     => 'profil',
-                                        'module' => 'default'
+                                        'id' => '1' //tukaj bo potem preko $_SESSION dobilo id userja
+                                        
                                     ),
                                     'default',
                                     true) ?>">Profil</a></li>
@@ -110,17 +112,18 @@
                                     true) ?>">Domov</a></li>
               <li><a href="<?php echo $this->url(
                                     array(
-                                        'controller' => 'ads',
-                                        'action'     => 'index',
-                                        'module' => 'default'
+                                        'controller' => 'account',
+                                        'action'     => 'list',
+                                        'module' => 'default',
+                                        'id' => '1' //tukaj bo potem preko $_SESSION dobilo id userja
                                     ),
                                     'default',
-                                    true) ?>">Dodajanje Oglasov</a></li>
+                                    true) ?>">Urejanje Oglasov</a></li>
               <li><a href="<?php echo $this->url(
                                     array(
                                         'controller' => 'contact',
                                         'action'     => 'index',
-                                        'module' => 'default'
+                                        'module' => 'default'                                        
                                     ),
                                     'default',
                                     true) ?>">Kontakti</a></li>
@@ -287,12 +290,12 @@
         
       </div><!--/row-->
 
-      <hr>
-
+      
+<!--
       <footer>
         <p>&copy; Sano Fužir 2012</p>
       </footer>
-
+-->
     </div><!--/.fluid-container-->
 
     <!-- Le javascript

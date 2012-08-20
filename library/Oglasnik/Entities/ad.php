@@ -43,7 +43,7 @@ class Ad
     /**
      * @var string $status
      *
-     * @Column(name="status", type="string", length=3)
+     * @Column(name="status", type="string", length=10)
      */
     private $status;
 

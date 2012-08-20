@@ -240,4 +240,16 @@ class User
     {
         return $this->telephon;
     }
+    public function getNumberOfAds() 
+    {
+        return $this->ads->count();
+    }
+
+    /**
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAds()
+    {
+        return $this->ads;
+    }
 }
