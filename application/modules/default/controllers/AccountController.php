@@ -19,13 +19,12 @@ class AccountController extends Zend_Controller_Action
     public function listAction()
     {
         //podatki o uporabniku
-        $cur_user = $this->_getParam('id');
-        $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneById($cur_user);
+        $UserId = $this->_getParam('id');
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneById($UserId);
         $this->view->user = $user;
         
         //oglasi uporabnika
         setlocale(LC_ALL, 'sl_SI');
-        $ads = $this->_em->getRepository('Oglasnik\Entities\Ad')->findOneById($cur_user);
         $this->view->ads = $user->getAds();
     }
     public function profilAction()
@@ -58,38 +57,26 @@ class AccountController extends Zend_Controller_Action
         //$form    = new Form_Add(); 
         //$this->view->form = $form;
         
-        //dodajanje oglasa
-        /*
-        $ad = new Ad;
-        $user_id = $this->_getParam('id');
-        $user = $em->getRepository('Oglasnik\Entities\User')->find($user_id);
-        echo 
-         * 
-         */
-        /*
-        $ad->setUser('Mr.Right');
-        $category = $em->getRepository('Oglasnik\Entities\Category')->find($id);
-        $ad->setCategory('Mr.Right');
-        $ad->setPrice('Mr.Right');
-        $ad->setDescription('Mr.Right');
-        $ad->setStatus('Mr.Right');
-        $ad->setCreated('Mr.Right');
-        $image = $em->getRepository('Oglasnik\Entities\Image')->find($id);
-        $ad->setimage('Mr.Right');
-        $em->persist($ad);
-        $em->flush();
+        $UserId = 1;
 
         $img = new Image(); 
         $img->setName('img.jpg'); 
-        $cat = $em->getRe.....find($idcat); 
-        $user = $em->getRep.....find($iduser); 
+        $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($category_id);
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
+         
+        //dodajanje oglasa
+        $ad = new Ad;
+        $ad->setUser($UserId);
+        $ad->setCategory($category);
+        $ad->setName('Hisa');
+        $ad->setPrice('100111');
+        $ad->setDescription('Opis hise test');
+        $ad->setStatus('actice');
+        $ad->setCreated('2012-08-20 18:49:00');
+        $ad->setImage($img);
         
-        $ad = new Ad(); 
-        $ad->setName('ime oglasa'); 
-        $ad->setImage($img); 
-        $ad->setCategory($cat);
-         * 
-         */
+        $em->persist($ad);
+        $em->flush();
 
     }
     public function editAction()
