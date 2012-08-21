@@ -59,42 +59,45 @@ class AccountController extends Zend_Controller_Action
     }
     public function addAction()
     {
-        $request = $this->getRequest();
-        $form    = new Form_Add();
- 
-        if ($this->getRequest()->isPost()) {
-            if ($form->isValid($request->getPost())) {
-                $values = $form->getValues();
-                
-                $this->values = $values;
-                
-                $Name = $this->values->???
-                $Price = $this->values->???
-                $Category = $this->values->???
-                $Description = $this->values->???
-                
-                return $this->_helper->redirector('add');
-            }
-        }
- 
-        $this->view->form = $form;
-        
-        /*
-        //forma
-        $form    = new Form_Add(); 
-        $this->view->form = $form;
+       $form = new Form_Add();
+       $this->view->form = $form;
 
+       if ($this->getRequest()->isPost()) {
+           if ($form->isValid($this->getRequest()->getPost())) {
+               $data = $form->getValues();
+
+               $this->_save($data);
+              
+               $this->_helper->flashMessenger->addMessage('Podatki so uspešno shranjeni');
+               $this->_helper->redirector('index');
+           } else {
+               $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
+           }
+       }
+    }
+        
+    public function _save($data) 
+    {
         require_once "/Oglasnik/Resource/doctrine.php";
         
+        $name=($data["name"]);
+        $price=($data["price"]);
+        $category=($data["category"]);
+        $description=($data["description"]);
+        /*
+        $category = $this->_em->getRepository('Oglasnik\Entities\Category')->findOneByName($categoryName);
+        $this->categoryId = $category->getId();
+        $categoryId = $this->categoryId;   
+        */
         $UserId = 1;
-        $category_id = 2;
         //nastavitve za sliko
         $img = new Image(); 
-        $img->setName('img.jpg'); 
-        $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($category_id);
-        $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
         
-        //pretvorba datuma
+        //manjka se dobiti ime slike iz forme:
+        $image->setName('img.jpg'); 
+        
+        $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($category);
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
 
         $datum = '2012-08-20 18:49:00';
         
@@ -102,12 +105,12 @@ class AccountController extends Zend_Controller_Action
         $ad = new Ad;
         $ad->setUser($user);
         $ad->setCategory($category);
-        $ad->setName('Hisa');
-        $ad->setPrice('100111');
-        $ad->setDescription('Opis hise test');
+        $ad->setName($name);
+        $ad->setPrice($price);
+        $ad->setDescription($description);
         $ad->setStatus('actice');
         $ad->setCreated('2012-08-20 18:49:00');
-        $ad->setImage($img);
+        $ad->setImage($image);
 
         //vnos v bazo
         $this->_em->persist($img);
@@ -115,9 +118,8 @@ class AccountController extends Zend_Controller_Action
         $this->_em->flush();
 
         echo "Created Ad with ID " . $ad->getId();
-
-        */
     }
+
     public function editAction()
     {
         $form    = new Form_Add();
@@ -168,8 +170,3 @@ class AccountController extends Zend_Controller_Action
    }
 */
 }
-
-
-
-
-
