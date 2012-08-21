@@ -183,7 +183,8 @@ class Ad
      */
     public function setCreated($created)
     {
-        $this->created = $created;
+        //$this->created = $created;
+        $this->created = new \DateTime($created);
         return $this;
     }
 
