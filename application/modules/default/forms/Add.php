@@ -12,30 +12,21 @@ class Form_Add extends Zend_Form
         $this->addElement('text', 'name', array(
             'label'      => 'Ime:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'name',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add an price element
         $this->addElement('text', 'price', array(
             'label'      => 'Cena:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'price',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add an category element
         $this->addElement('text', 'category', array(
             'label'      => 'Kategorija:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'category',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add the description element

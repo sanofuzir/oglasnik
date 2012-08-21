@@ -59,11 +59,33 @@ class AccountController extends Zend_Controller_Action
     }
     public function addAction()
     {
-        //forma
-        //$form    = new Form_Add(); 
-        //$this->view->form = $form;
+        $request = $this->getRequest();
+        $form    = new Form_Add();
+ 
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($request->getPost())) {
+                $values = $form->getValues();
+                
+                $this->values = $values;
+                
+                $Name = $this->values->???
+                $Price = $this->values->???
+                $Category = $this->values->???
+                $Description = $this->values->???
+                
+                return $this->_helper->redirector('add');
+            }
+        }
+ 
+        $this->view->form = $form;
         
+        /*
+        //forma
+        $form    = new Form_Add(); 
+        $this->view->form = $form;
+
         require_once "/Oglasnik/Resource/doctrine.php";
+        
         $UserId = 1;
         $category_id = 2;
         //nastavitve za sliko
@@ -94,6 +116,7 @@ class AccountController extends Zend_Controller_Action
 
         echo "Created Ad with ID " . $ad->getId();
 
+        */
     }
     public function editAction()
     {
