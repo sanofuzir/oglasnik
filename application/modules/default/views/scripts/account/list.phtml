@@ -37,9 +37,14 @@
                 </tr>
                 <tr>
                     <td><span class="list">Slika:</span></td>
-                    <td><a href="/img/<?php echo $ad->getImage()->getName(); ?>" />
-                            <img src="/img/<?php echo $ad->getImage()->getName(); ?>" alt="slika">
-                        </a>
+                    <td><?php 
+                            
+                            $str = $ad->getImage()->getName(); 
+                            $lokacija = explode('/', $str);
+                            echo ($lokacija[4]);
+                        ?>
+                        <a href="<?php echo "/".($lokacija[4]);  ?>" />
+                            <img src="<?php echo "/".($lokacija[4]); ?>" alt="slika">                      </a>
                     </td>
                 </tr>
                 <tr>

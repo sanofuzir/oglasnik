@@ -12,60 +12,42 @@ class Form_Register extends Zend_Form
         $this->addElement('text', 'username', array(
             'label'      => 'Username:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'username',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add an password element
-        $this->addElement('text', 'password', array(
+        $this->addElement('password', 'password', array(
             'label'      => 'Password:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'password',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add an email element
         $this->addElement('text', 'email', array(
             'label'      => 'Email:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'email',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add an name element
         $this->addElement('text', 'name', array(
             'label'      => 'Name:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'name',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add an surname element
         $this->addElement('text', 'surname', array(
             'label'      => 'Surname:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'surname',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add an telephone element
         $this->addElement('text', 'telephone', array(
             'label'      => 'Telephone:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'telephone',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add a captcha

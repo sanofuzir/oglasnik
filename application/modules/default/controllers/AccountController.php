@@ -45,6 +45,19 @@ class AccountController extends Zend_Controller_Action
         $form    = new Form_Register();
  
         $this->view->form = $form;
+        
+        if ($this->getRequest()->isPost()) {
+           if ($form->isValid($this->getRequest()->getPost())) {
+               $data = $form->getValues();
+
+               $this->_save_user($data);
+              
+               $this->_helper->flashMessenger->addMessage('Podatki so uspešno shranjeni');
+               $this->_helper->redirector('index');
+           } else {
+               $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
+           }
+       }
     }
 
     public function loginAction()
@@ -65,18 +78,43 @@ class AccountController extends Zend_Controller_Action
        if ($this->getRequest()->isPost()) {
            if ($form->isValid($this->getRequest()->getPost())) {
                $data = $form->getValues();
-
-               $this->_save($data);
+               $location = $form->image->getFileName();
+               $this->_save($data, $location);
               
                $this->_helper->flashMessenger->addMessage('Podatki so uspešno shranjeni');
-               $this->_helper->redirector('index');
+               $this->_helper->redirector('list');
            } else {
                $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
            }
        }
     }
+    public function _save_user($data)
+    {
+        require_once "/Oglasnik/Resource/doctrine.php";
         
-    public function _save($data) 
+        $username=($data["username"]);
+        $password=($data["password"]);
+        $email=($data["email"]);
+        $status='active';
+        $name=($data["name"]);
+        $surname=($data["surname"]);
+        $telephone=($data["telephone"]);
+
+        $user = new User;
+        $user->setUsername($username);
+        $user->setPassword($password);
+        $user->setEmail($email);
+        $user->setStatus($status);
+        $user->setName($name);
+        $user->setSurname($surname);
+        $user->setTelephon($telephone);
+
+        //vnos v bazo
+        $this->_em->persist($user);
+        $this->_em->flush();        
+    }
+        
+    public function _save($data, $location) 
     {
         require_once "/Oglasnik/Resource/doctrine.php";
         
@@ -84,17 +122,13 @@ class AccountController extends Zend_Controller_Action
         $price=($data["price"]);
         $category=($data["category"]);
         $description=($data["description"]);
-        /*
-        $category = $this->_em->getRepository('Oglasnik\Entities\Category')->findOneByName($categoryName);
-        $this->categoryId = $category->getId();
-        $categoryId = $this->categoryId;   
-        */
+
         $UserId = 1;
         //nastavitve za sliko
-        $img = new Image(); 
+        $image = new Image(); 
         
         //manjka se dobiti ime slike iz forme:
-        $image->setName('img.jpg'); 
+        $image->setName($location); 
         
         $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($category);
         $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
@@ -113,11 +147,10 @@ class AccountController extends Zend_Controller_Action
         $ad->setImage($image);
 
         //vnos v bazo
-        $this->_em->persist($img);
+        $this->_em->persist($image);
         $this->_em->persist($ad);
         $this->_em->flush();
 
-        echo "Created Ad with ID " . $ad->getId();
     }
 
     public function editAction()

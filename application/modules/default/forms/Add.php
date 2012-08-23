@@ -24,7 +24,8 @@ class Form_Add extends Zend_Form
         
         // Add an category element
         $category = new Zend_Form_Element_Select('category');
-
+        //dopolni, da bo bralo podatke iz baze-> poizvedba vseh kategorij in nato 
+        //s foreach zpisovanje Id-jev in title
         $category->setLabel('Kategorija:')
 
               ->setMultiOptions(array(
@@ -52,11 +53,15 @@ class Form_Add extends Zend_Form
             'label'      => 'Opis:',
             'required'   => true
         ));
+        
+        //Add file upload 
         $element = new Zend_Form_Element_File('image');
         $element->setLabel('Pripni sliko:')
                 ->setDestination('/Diploma/Oglasnik/public/img')
                 ->setRequired(false);
+        $element->addValidator('Count', false, 1);
         $element->addValidator('Size', false, 102400);
+        $element->addValidator('Extension', false, 'jpg,png,gif,JPG');
         $this->addElement($element, 'image');
  
         // Add the submit button
