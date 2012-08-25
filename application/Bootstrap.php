@@ -53,6 +53,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         'action' => 'list'));
         $ads_list_router->addRoute('viewadslist',$ads_list_Route);
         
+        //pot za izbris oglasov uporabnika
+        $ads_del_router = $frontController->getRouter();
+
+        $ads_del_Route = new Zend_Controller_Router_Route('account/delete/:id',
+        array('module' => 'default',
+        'controller' => 'account',
+        'action' => 'delete'));
+        $ads_del_router->addRoute('viewadslist',$ads_del_Route);
+        
         //pot za registracijo uporabnika
         $register_router = $frontController->getRouter();
 

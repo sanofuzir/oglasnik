@@ -82,7 +82,7 @@ class AccountController extends Zend_Controller_Action
                $this->_save($data, $location);
               
                $this->_helper->flashMessenger->addMessage('Podatki so uspešno shranjeni');
-               $this->_helper->redirector('list');
+               $this->_helper->redirector('index');
            } else {
                $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
            }
@@ -133,7 +133,9 @@ class AccountController extends Zend_Controller_Action
         $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($category);
         $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
 
-        $datum = '2012-08-20 18:49:00';
+        $today = getdate();
+        $datum = $today[year]."-".$today[mon]."-".$today[mday]." ".$today[hours].":".$today[minutes].":".$today[seconds];
+        //$datum = '2012-08-20 18:49:00';
         
         //dodajanje oglasa
         $ad = new Ad;
@@ -143,7 +145,7 @@ class AccountController extends Zend_Controller_Action
         $ad->setPrice($price);
         $ad->setDescription($description);
         $ad->setStatus('actice');
-        $ad->setCreated('2012-08-20 18:49:00');
+        $ad->setCreated($datum);
         $ad->setImage($image);
 
         //vnos v bazo
@@ -160,7 +162,24 @@ class AccountController extends Zend_Controller_Action
         $this->view->form = $form;
 
     }
-    
+    public function deleteAction()
+    {           
+        $cur_id = $this->_getParam('id');
+        $id = $this->_em->getRepository('Oglasnik\Entities\Ad')->find($cur_id);
+        $this->view->id =$id;
+        //brisanje oglasa
+         $this->_deleteAd($id);        
+    }
+    public function _deleteAd($id)
+    {
+        require_once "/Oglasnik/Resource/doctrine.php";
+        
+        $ad = new Ad;
+        $ad = $this->_em->getRepository('Oglasnik\Entities\Ad')->find($id);
+        
+        //$em->remove($ad);
+        //$em->flush();
+    }
     
     /*
     public function deleteAction()
