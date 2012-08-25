@@ -137,10 +137,57 @@ class AccountController extends Zend_Controller_Action
 
     public function editAction()
     {
-        $form    = new Form_Add();
- 
+        $form = new Form_Add();
         $this->view->form = $form;
+        
+        $cur_id = $this->_getParam('id');
+        $ad = $this->_em->getRepository('Oglasnik\Entities\Ad')->find($cur_id);
+        $this->view->id =$ad;
+        
+        if ($this->getRequest()->isPost()) {
+           if ($form->isValid($this->getRequest()->getPost())) {
+               $data = $form->getValues();
+               $img_location = $form->image->getFileName();
+               $this->_editeAd($ad, $data, $location);
+              
+               $this->_helper->flashMessenger->addMessage('Podatki so uspešno shranjeni');
+               $this->_helper->redirector('index');
+           } else {
+               $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
+           }
+       }        
+    }
+    public function _editeAd($ad, $data, $img_location)
+    {
+        //Detaching
+        $serializedEntity = $this->_em->detach($ad);
+        
+        //nastavitev novih podatkov
+        $UserId = 1;
+        //nastavitve za sliko
+        $image = new Image(); 
+        $image->setName($location); 
+        $cur_cat = $data['category'];
+        
+        $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($cur_cat);
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
 
+        $this->date = $user->setCreated();
+        $datum = $this->date;
+        //dodajanje oglasa
+        $ad = new Ad;
+        $ad->setUser($user);
+        $ad->setCategory($category);
+        $ad->setName($data['name']);
+        $ad->setPrice($data['price']);
+        $ad->setDescription($data['description']);
+        $ad->setStatus('actice');
+        $ad->setCreated($datum);
+        $ad->setImage($image);
+        
+        //Merging
+        $detachedEntity = unserialize($serializedEntity); // some detached entity
+        $entity = $this->_em->merge($detachedEntity);
     }
     public function deleteAction()
     {           
