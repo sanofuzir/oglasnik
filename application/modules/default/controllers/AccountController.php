@@ -26,7 +26,7 @@ class AccountController extends Zend_Controller_Action
     {
         //podatki o uporabniku
         $UserId = $this->_getParam('id');
-        $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneById($UserId);
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
         $this->view->user = $user;
         
         //oglasi uporabnika
@@ -36,7 +36,7 @@ class AccountController extends Zend_Controller_Action
     public function profilAction()
     {
         $cur_user = $this->_getParam('id');
-        $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneById($cur_user);
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($cur_user);
         $this->view->user = $user;        
     }
 
@@ -90,24 +90,14 @@ class AccountController extends Zend_Controller_Action
     }
     public function _save_user($data)
     {
-        require_once "/Oglasnik/Resource/doctrine.php";
-        
-        $username=($data["username"]);
-        $password=($data["password"]);
-        $email=($data["email"]);
-        $status='active';
-        $name=($data["name"]);
-        $surname=($data["surname"]);
-        $telephone=($data["telephone"]);
-
         $user = new User;
-        $user->setUsername($username);
-        $user->setPassword($password);
-        $user->setEmail($email);
-        $user->setStatus($status);
-        $user->setName($name);
-        $user->setSurname($surname);
-        $user->setTelephon($telephone);
+        $user->setUsername($data['username']);
+        $user->setPassword($data['password']);
+        $user->setEmail($data['email']);
+        $user->setStatus('active');
+        $user->setName($data['name']);
+        $user->setSurname($data['surname']);
+        $user->setTelephon($data['telephone']);
 
         //vnos v bazo
         $this->_em->persist($user);
@@ -115,35 +105,26 @@ class AccountController extends Zend_Controller_Action
     }
         
     public function _save($data, $location) 
-    {
-        require_once "/Oglasnik/Resource/doctrine.php";
-        
-        $name=($data["name"]);
-        $price=($data["price"]);
-        $category=($data["category"]);
-        $description=($data["description"]);
-
+    {   
         $UserId = 1;
         //nastavitve za sliko
         $image = new Image(); 
-        
-        //manjka se dobiti ime slike iz forme:
         $image->setName($location); 
+        $cur_cat = $data['category'];
         
-        $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($category);
+        $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($cur_cat);
         $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
 
-        $today = getdate();
-        $datum = $today[year]."-".$today[mon]."-".$today[mday]." ".$today[hours].":".$today[minutes].":".$today[seconds];
-        //$datum = '2012-08-20 18:49:00';
         
+        $this->date = $user->setCreated();
+        $datum = $this->date;
         //dodajanje oglasa
         $ad = new Ad;
         $ad->setUser($user);
         $ad->setCategory($category);
-        $ad->setName($name);
-        $ad->setPrice($price);
-        $ad->setDescription($description);
+        $ad->setName($data['name']);
+        $ad->setPrice($data['price']);
+        $ad->setDescription($data['description']);
         $ad->setStatus('actice');
         $ad->setCreated($datum);
         $ad->setImage($image);
@@ -152,7 +133,6 @@ class AccountController extends Zend_Controller_Action
         $this->_em->persist($image);
         $this->_em->persist($ad);
         $this->_em->flush();
-
     }
 
     public function editAction()
@@ -171,54 +151,10 @@ class AccountController extends Zend_Controller_Action
          $this->_deleteAd($id);        
     }
     public function _deleteAd($id)
-    {
-        require_once "/Oglasnik/Resource/doctrine.php";
-        
+    {        
         $ad = new Ad;
-        $ad = $this->_em->getRepository('Oglasnik\Entities\Ad')->find($id);
-        
-        //$em->remove($ad);
-        //$em->flush();
+        $ad = $this->_em->getRepository('Oglasnik\Entities\Ad')->findOneById($id);
+        $this->_em->remove($ad);
+        $this->_em->flush();
     }
-    
-    /*
-    public function deleteAction()
-   {
-       if ($this->getRequest()->isGet()) {
-           $id = $this->getRequest()->getParam('id');
-           $certPurchase = new Application_Model_DbTable_CertPurchase();
-           if ($certPurchase->deleteOrder($id)) {
-               $this->helper->flashMessenger->addMessage(array('success'=>$this->_t->('Certificates order deleted successfuly.')));
-           }
-       }
-       $this->_helper->redirector('index');
-   }
-   public function addAction()
-   {
-       
-       $type = $this->getRequest()->getParam('type');
-       if ($type == 'extended') {
-           $form = new Application_Form_ExtendedWarranty();
-           $form->getElement('warrantyType')->setValue('extended');
-           $this->view->title = $this->t->("Add new extended warranty");
-       } else {
-           $form = new Application_Form_Warranty();
-           $form->getElement('warrantyType')->setValue('general');
-           $this->view->title = $this->t->("Add new warranty");
-       }
-       $this->view->form = $form;
-       if ($this->getRequest()->isPost()) {
-           $formData = $this->getRequest()->getPost();
-           if ($form->isValid($formData)) { 
-               $warranty = new Application_Model_DbTable_Warranty();
-               $warranty->addWarranty($form);
-               $this->helper->flashMessenger->addMessage(array('success'=>$this->_t->('Warranty saved successfuly.')));
-               $this->_helper->redirector('index');
-           } else {
-               $this->helper->flashMessenger->addMessage(array('error'=>$this->_t->('Submited data is not valid.')));
-               $form->populate($formData);
-           }
-       }
-   }
-*/
 }

@@ -252,4 +252,10 @@ class User
     {
         return $this->ads;
     }
+    
+    public function setCreated()
+    {
+        // WILL be saved in the database
+        $this->updated = new \DateTime("now");
+    }
 }

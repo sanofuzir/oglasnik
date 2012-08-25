@@ -147,6 +147,12 @@ class User extends \Oglasnik\Entities\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getAds();
     }
 
+    public function setCreated()
+    {
+        $this->__load();
+        return parent::setCreated();
+    }
+
 
     public function __sleep()
     {
