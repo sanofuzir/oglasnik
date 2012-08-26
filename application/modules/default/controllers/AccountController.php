@@ -158,15 +158,12 @@ class AccountController extends Zend_Controller_Action
        }        
     }
     public function _editeAd($ad, $data, $img_location)
-    {
-        //Detaching
-        $serializedEntity = $this->_em->detach($ad);
-        
+    {        
         //nastavitev novih podatkov
         $UserId = 1;
         //nastavitve za sliko
         $image = new Image(); 
-        $image->setName($location); 
+        $image->setName($img_location); 
         $cur_cat = $data['category'];
         
         $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($cur_cat);
@@ -185,9 +182,11 @@ class AccountController extends Zend_Controller_Action
         $ad->setCreated($datum);
         $ad->setImage($image);
         
-        //Merging
-        $detachedEntity = unserialize($serializedEntity); // some detached entity
-        $entity = $this->_em->merge($detachedEntity);
+        //vnos v bazo
+        $this->_em->persist($image);
+        $this->_em->persist($ad);
+        $this->_em->flush();
+
     }
     public function deleteAction()
     {           
