@@ -91,9 +91,8 @@ class AccountController extends Zend_Controller_Action
      */
         
         $users = $this->_em->getRepository('Oglasnik\Entities\User')->find($data['username']);
-        $count=mysql_num_rows($users);	
         
-        if($count==1 && ($users['password']==$data['password']))
+        if($users['password']==$data['password'])
         {
             session_start();//začetek seje prestavi na index
             $_SESSION['prijavljen'] = 'yes';
