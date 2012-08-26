@@ -12,20 +12,14 @@ class Form_Login extends Zend_Form
         $this->addElement('text', 'username', array(
             'label'      => 'Username:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'username',
-            )
+            'filters'    => array('StringTrim')
         ));
         
         // Add an password element
         $this->addElement('password', 'password', array(
             'label'      => 'Password:',
             'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                'password',
-            )
+            'filters'    => array('StringTrim')
         ));
 
         // Add the submit button

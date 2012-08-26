@@ -65,6 +65,48 @@ class AccountController extends Zend_Controller_Action
         $form    = new Form_Login();
  
         $this->view->form = $form;
+        
+        if ($this->getRequest()->isPost()) {
+           if ($form->isValid($this->getRequest()->getPost())) {
+               $data = $form->getValues();
+
+               $this->_loginCheck($data);
+              
+               $this->_helper->flashMessenger->addMessage('Prijava uspešna!');
+               //$this->_helper->redirector('index');
+           } else {
+               $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
+           }
+       }  
+    }
+    public function _loginCheck($data) 
+    {    /*DQL            
+        $query = $this->_em->createQuery('SELECT u from User u WHERE u.username = :name AND u.password = :pass');
+        $query->setParameters(array(
+            'name' => $data['username'],
+            'pass' => $data['password'],
+        ));
+        $users = $query->getResult();
+     * 
+     */
+        
+        $users = $this->_em->getRepository('Oglasnik\Entities\User')->find($data['username']);
+        $count=mysql_num_rows($users);	
+        
+        if($count==1 && ($users['password']==$data['password']))
+        {
+            session_start();//začetek seje prestavi na index
+            $_SESSION['prijavljen'] = 'yes';
+            $_SESSION['username'] = $data['username'];
+            //test izpisa
+            //echo "Prijavljen: ".$_SESSION['prijavljen']."<br />Username: ".$_SESSION['username'];
+            
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public function logoutAction()
     {
