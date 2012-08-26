@@ -73,9 +73,10 @@ class AccountController extends Zend_Controller_Action
                $this->_loginCheck($data);
               
                $this->_helper->flashMessenger->addMessage('Prijava uspešna!');
-               //$this->_helper->redirector('index');
+               $this->_helper->redirector('index');
            } else {
                $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
+               $this->_helper->redirector('login');
            }
        }  
     }
@@ -94,17 +95,15 @@ class AccountController extends Zend_Controller_Action
         
         if($users['password']==$data['password'])
         {
-            session_start();//začetek seje prestavi na index
-            $_SESSION['prijavljen'] = 'yes';
-            $_SESSION['username'] = $data['username'];
-            //test izpisa
-            //echo "Prijavljen: ".$_SESSION['prijavljen']."<br />Username: ".$_SESSION['username'];
+            $username = new Zend_Session_Namespace('Zend_Auth');
+            $username->username = $users['username'];
+            $this->view->username = $username;
             
-            return true;
+            //return true;
         }
         else
         {
-            return false;
+            //return false;
         }
     }
     public function logoutAction()
