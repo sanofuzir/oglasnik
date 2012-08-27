@@ -191,7 +191,7 @@ class AccountController extends Zend_Controller_Action
                $this->_editeAd($ad, $data, $location);
               
                $this->_helper->flashMessenger->addMessage('Podatki so uspešno shranjeni');
-               $this->_helper->redirector('index');
+               //$this->_helper->redirector('index');
            } else {
                $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
            }
@@ -205,7 +205,7 @@ class AccountController extends Zend_Controller_Action
         $image = new Image(); 
         $image->setName($img_location); 
         $cur_cat = $data['category'];
-        
+
         $category = $this->_em->getRepository('Oglasnik\Entities\Category')->find($cur_cat);
         $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
 
@@ -220,13 +220,26 @@ class AccountController extends Zend_Controller_Action
         $ad->setDescription($data['description']);
         $ad->setStatus('actice');
         $ad->setCreated($datum);
-        $ad->setImage($image);
         
+        if($img_location != NULL)
+        {
+            $ad->setImage($image);
+            $this->_em->persist($image);
+        }else
+        {
+            //slika že obstaja in ne bo zamenjana!
+        }
+        if($data['delete'] = 1)
+        {
+            $ad->setImage('');
+            $this->_deleteImg($location);//skok v funkcijo za izbris slike
+            $this->_em->persist($image);
+        }
+
         //vnos v bazo
-        $this->_em->persist($image);
+        
         $this->_em->persist($ad);
         $this->_em->flush();
-
     }
     public function deleteAction()
     {           

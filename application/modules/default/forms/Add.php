@@ -27,21 +27,20 @@ class Form_Add extends Zend_Form
         //dopolni, da bo bralo podatke iz baze-> poizvedba vseh kategorij in nato 
         //s foreach zpisovanje Id-jev in title
         $category->setLabel('Kategorija:')
-
-              ->setMultiOptions(array(
-                                    1=>'Stanovanja',
-                                    2=>'Hiše',
-                                    3=>'Parcele',
-                                    5=>'Avtomobili',
-                                    6=>'Tovorna vozila',
-                                    7=>'Motorna kolesa',
-                                    8=>'Avtodomi',
-                                    10=>'Zvočniki',
-                                    11=>'Oprema',
-                                    13=>'PC',
-                                    14=>'Mac',
-                                    15=>'Strežniki',
-                                    16=>'Tablice'
+                 ->setMultiOptions(array(
+                                        1=>'Stanovanja',
+                                        2=>'Hiše',
+                                        3=>'Parcele',
+                                        5=>'Avtomobili',
+                                        6=>'Tovorna vozila',
+                                        7=>'Motorna kolesa',
+                                        8=>'Avtodomi',
+                                        10=>'Zvočniki',
+                                        11=>'Oprema',
+                                        13=>'PC',
+                                        14=>'Mac',
+                                        15=>'Strežniki',
+                                        16=>'Tablice'
                   ))
 
               ->setRequired(true)->addValidator('NotEmpty', true);
@@ -53,6 +52,9 @@ class Form_Add extends Zend_Form
             'label'      => 'Opis:',
             'required'   => true
         ));
+        $delete = new Zend_Form_Element_Checkbox('delete');
+        $delete->setLabel('Pobriši staro sliko');
+        $this->addElement($delete, 'delete');
         
         //Add file upload 
         $element = new Zend_Form_Element_File('image');
