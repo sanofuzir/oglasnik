@@ -211,8 +211,10 @@ class AccountController extends Zend_Controller_Action
 
         $this->date = $user->setCreated();
         $datum = $this->date;
+        
         //dodajanje oglasa
         $ad = new Ad;
+        $ad->setId($ad['id']);
         $ad->setUser($user);
         $ad->setCategory($category);
         $ad->setName($data['name']);
