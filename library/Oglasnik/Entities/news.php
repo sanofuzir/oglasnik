@@ -27,7 +27,7 @@ class News
     private $name;
 
     /**
-     * @var text $text
+     * @var string $text
      *
      * @Column(name="text", type="text")
      */
@@ -36,7 +36,7 @@ class News
     /**
      * @var string $active
      *
-     * @Column(name="active", type="string", length=3)
+     * @Column(name="active", type="string", length=10)
      */
     private $active;
     
@@ -86,7 +86,7 @@ class News
     /**
      * Set text
      *
-     * @param text $text
+     * @param string $text
      * @return News
      */
     public function setText($text)
