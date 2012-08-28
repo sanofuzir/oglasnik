@@ -71,11 +71,6 @@ class Form_Add extends Zend_Form
             'ignore'   => true,
             'label'    => 'Vnesi Oglas',
         ));
- 
-        // And finally add some CSRF protection
-        $this->addElement('hash', 'csrf', array(
-            'ignore' => true,
-        ));
     }
 }
 

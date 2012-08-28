@@ -165,7 +165,7 @@ class AccountController extends Zend_Controller_Action
         $ad->setName($data['name']);
         $ad->setPrice($data['price']);
         $ad->setDescription($data['description']);
-        $ad->setStatus('actice');
+        $ad->setStatus('active');
         $ad->setCreated($datum);
         $ad->setImage($image);
 
@@ -188,7 +188,7 @@ class AccountController extends Zend_Controller_Action
            if ($form->isValid($this->getRequest()->getPost())) {
                $data = $form->getValues();
                $img_location = $form->image->getFileName();
-               $this->_editeAd($ad, $data, $location);
+               $this->_editeAd($cur_id, $data, $img_location);
               
                $this->_helper->flashMessenger->addMessage('Podatki so uspešno shranjeni');
                //$this->_helper->redirector('index');
@@ -197,7 +197,7 @@ class AccountController extends Zend_Controller_Action
            }
        }        
     }
-    public function _editeAd($ad, $data, $img_location)
+    public function _editeAd($cur_id, $data, $img_location)
     {        
         //nastavitev novih podatkov
         $UserId = 1;
@@ -212,9 +212,8 @@ class AccountController extends Zend_Controller_Action
         $this->date = $user->setCreated();
         $datum = $this->date;
         
-        //dodajanje oglasa
-        $ad = new Ad;
-        $ad->setId($ad['id']);
+        //update oglasa
+        $ad = $this->_em->getRepository('Oglasnik\Entities\Ad')->find($cur_id);
         $ad->setUser($user);
         $ad->setCategory($category);
         $ad->setName($data['name']);
@@ -231,16 +230,23 @@ class AccountController extends Zend_Controller_Action
         {
             //slika že obstaja in ne bo zamenjana!
         }
-        if($data['delete'] = 1)
+        if($data['delete']=1)
         {
-            $ad->setImage('');
-            $this->_deleteImg($location);//skok v funkcijo za izbris slike
-            $this->_em->persist($image);
+            //brisanje iz tabele image
+            $id = $ad->GetImage();
+            $this->_deleteImage($id);//skok v funkcijo za izbris slike
         }
 
         //vnos v bazo
         
         $this->_em->persist($ad);
+        $this->_em->flush();
+    }
+    public function _deleteImage($id)
+    {
+        $image = new Image;
+        $image = $this->_em->getRepository('Oglasnik\Entities\Image')->findOneById($id); 
+        $this->_em->remove($image);
         $this->_em->flush();
     }
     public function deleteAction()
