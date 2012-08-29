@@ -4,6 +4,7 @@ use Oglasnik\Entities\User;
 use Oglasnik\Entities\Image;
 use Oglasnik\Entities\Category;
 use Oglasnik\Entities\Ad;
+use Oglasnik\Entities\News;
 
 class AccountController extends Zend_Controller_Action
 {
@@ -175,6 +176,22 @@ class AccountController extends Zend_Controller_Action
         $this->_em->flush();
     }
 
+    public function _saveNews($data)
+    {        
+        $UserId = 1;
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
+        
+        $news = new News;
+        $news->setName($data['name']);
+        $news->setText($data['text']);
+        $news->setActive('inactive');
+        $news->setUser($user);
+        
+        //vnos v bazo
+        $this->_em->persist($news);
+        $this->_em->flush();
+        
+    }
     public function editAction()
     {
         $form = new Form_Add();
@@ -263,5 +280,73 @@ class AccountController extends Zend_Controller_Action
         $ad = $this->_em->getRepository('Oglasnik\Entities\Ad')->findOneById($id);
         $this->_em->remove($ad);
         $this->_em->flush();
+    }
+    public function newsAction()
+    {        
+        $query = $this->_em->createQuery('SELECT n.name, n.text, n.id FROM Oglasnik\Entities\News n');
+        $news = $query->getResult();
+        $this->view->news =$news;
+    }
+    public function addnewsAction()
+    {
+        $form = new Form_Addnews();
+        $this->view->form = $form;
+        
+        if ($this->getRequest()->isPost()) {
+           if ($form->isValid($this->getRequest()->getPost())) {
+               $data = $form->getValues();
+
+               $this->_saveNews($data);
+              
+               $this->_helper->flashMessenger->addMessage('Podatki so uspešno shranjeni');
+               $this->_helper->redirector('index');
+           } else {
+               $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
+           }
+       }
+    }
+    public function deletenewsAction ()
+    {
+        $cur_id = $this->_getParam('id');
+        $id = $this->_em->getRepository('Oglasnik\Entities\News')->find($cur_id);
+        $this->view->id =$id;
+        //brisanje oglasa
+        $this->_deleteNews($id); 
+    }
+    public function _deleteNews($id)
+    {
+        $news = new News;
+        $news = $this->_em->getRepository('Oglasnik\Entities\News')->findOneById($id);
+        $this->_em->remove($news);
+        $this->_em->flush();
+    }
+    public function activenewsAction()
+    {
+        //pridobivanje id-ja novice
+        $cur_id = $this->_getParam('id');
+        //postavitev vseh statusov active v vseh novicah na inactive razen v novici kijo aktiviramo
+        $this->_inactive_action($cur_id);
+        //update Novice
+        $this->_activate($cur_id);
+        
+    }
+    public function _activate($cur_id)
+    {
+        $news = $this->_em->getRepository('Oglasnik\Entities\News')->findOneById($cur_id);
+        $news->setActive('active');
+
+        //vnos v bazo
+        $this->_em->persist($news);
+        $this->_em->flush();
+    }
+    public function _inactive_action($cur_id)
+    {
+        $news = $this->_em->getRepository('Oglasnik\Entities\News')->findOneById($cur_id);
+        $this->id = $news;
+        $id = $this->id->getId();
+        
+        $query = $this->_em->createQuery("UPDATE Oglasnik\Entities\News n SET n.active ='inactive' WHERE n.id !=:id");
+        $query->setParameter('id', $id);
+        $newsUpdated = $query->execute();
     }
 }

@@ -79,6 +79,24 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         'controller' => 'account',
         'action' => 'login'));
         $login_router->addRoute('viewlist',$login_Route);
+        
+        //pot za urejanje novic
+        $news_router = $frontController->getRouter();
+
+        $news_Route = new Zend_Controller_Router_Route('account/news/',
+        array('module' => 'default',
+        'controller' => 'account',
+        'action' => 'news'));
+        $news_router->addRoute('viewadslist',$news_Route);
+        
+        //pot za brisanje novic
+        $news_del_router = $frontController->getRouter();
+
+        $news_del_Route = new Zend_Controller_Router_Route('account/news/delete/:id',
+        array('module' => 'default',
+        'controller' => 'account',
+        'action' => 'news'));
+        $news_del_router->addRoute('viewadslist',$news_del_Route);
   
     }
 

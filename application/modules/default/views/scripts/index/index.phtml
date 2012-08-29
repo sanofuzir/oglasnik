@@ -2,18 +2,33 @@
           <div class="hero-unit">
               <h1><?php echo $this->news->getName(); ?></h1>
             <p><?php echo $this->news->getText(); ?></p>
-            <p><a class="btn btn-primary btn-large">Urejanje &raquo;</a></p>
+            <p><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'news',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>"class="btn btn-primary btn-large">Urejanje &raquo;</a></p>
           </div>
           <div class="row-fluid" style="margin-left: 20px;">
             <div class="span4">
-              <h2>Anketa</h2>
-              <p>Vsebina ankete</p>
-              <p><a class="btn" href="#">Glasuj &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Zadnji Oglas</h2>
-              <p>Oglas</p>
-              <p><a class="btn" href="#">Povezava &raquo;</a></p>
+              <h2>Zadnji dodan Oglas</h2>
+              <p><?php echo "Ime: ".$this->ad->getName();
+                       echo "<br />"."Cena: ".$this->ad->getPrice();
+                       echo "<br />"."Opis: ".$this->ad->getDescription();
+              ?></p>
+              
+              <p><a class="btn" href="<?php echo $this->url(
+                                    array(
+                                        'module' => 'default',
+                                        'controller' => 'ads',
+                                        'action'     => 'view',
+                                        'id' => $this->ad->getId()
+                                        
+                                    ),
+                                    'default',
+                                    true) ?>">Podrobno &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->

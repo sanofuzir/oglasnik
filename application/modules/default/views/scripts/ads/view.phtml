@@ -21,8 +21,14 @@
                             <?php echo date_format($this->ad->getCreated(), "d.m.Y"); ?>
                     </li>
                     <li><span class="podatki">Slike:</span><br /><br />
-                        <a href="/img/<?php echo $this->ad->getImage()->getName(); ?>" />
-                            <img src="/img/<?php echo $this->ad->getImage()->getName(); ?>" alt="slika">
+                        <?php 
+                            
+                            $str = $this->ad->getImage()->getName(); 
+                            $lokacija = explode('/', $str);
+                            echo ($lokacija[4]);
+                        ?>
+                        <a href="<?php echo "/".($lokacija[4]);  ?>" />
+                            <img src="<?php echo "/".($lokacija[4]);  ?>" alt="slika">
                         </a>
                     </li>
                         

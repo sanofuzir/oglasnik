@@ -1,0 +1,60 @@
+<div id="content">
+    <div id="view-content">
+        <a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'addnews',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>" />
+        <img src="/img/add.png" alt="add" style="width:25px; margin-top: -7px;"/>
+            <span class="ads_add">Dodajanje Novic</span>
+        </a>
+        <hr />
+        <h2>Novice v arhivu:</h2>
+        <?php foreach ($this->news as $news): ?>
+        <table id="list" style="width: 700px;">
+                <tr>
+                    <td><span class="list">Ime:</span></td>
+                    <td><?php echo $news['name'];?></td>
+                </tr>
+                <tr>
+                    <td><span class="list">Text:</span></td>
+                    <td><?php echo $news['text'];?></td>
+                </tr>
+                <tr>
+                    <td style="width: 70px;">
+                        <a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'deletenews',
+                                        'module' => 'default',
+                                        'id' => $news['id']
+                                    ),
+                                    'default',
+                                    true) ?>"/>
+                <img style="width: 25px;" src="/img/delete.png" alt="delete">
+                Briši
+                </a>
+                </td>
+                <td><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'activenews',
+                                        'module' => 'default',
+                                        'id' => $news['id']
+                                    ),
+                                    'default',
+                                    true) ?>"/>
+                    <img style="width: 25px;" src="/img/edit.png" alt="edit">
+                    Nastavi za aktivno novico
+                    </a>
+                </td>
+                </tr>
+                
+        </table>
+        <?php endforeach; ?>
+    </div>
+</div>
+
