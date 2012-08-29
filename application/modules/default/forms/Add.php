@@ -52,9 +52,6 @@ class Form_Add extends Zend_Form
             'label'      => 'Opis:',
             'required'   => true
         ));
-        $delete = new Zend_Form_Element_Checkbox('delete');
-        $delete->setLabel('Pobriši staro sliko');
-        $this->addElement($delete, 'delete');
         
         //Add file upload 
         $element = new Zend_Form_Element_File('image');

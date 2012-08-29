@@ -208,7 +208,7 @@ class AccountController extends Zend_Controller_Action
                $this->_editeAd($cur_id, $data, $img_location);
               
                $this->_helper->flashMessenger->addMessage('Podatki so uspešno shranjeni');
-               //$this->_helper->redirector('index');
+               $this->_helper->redirector('index');
            } else {
                $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
            }
@@ -243,21 +243,14 @@ class AccountController extends Zend_Controller_Action
         {
             $ad->setImage($image);
             $this->_em->persist($image);
+            $this->_em->flush();
         }else
         {
             //slika že obstaja in ne bo zamenjana!
+            //vnos v bazo
+            $this->_em->persist($ad);
+            $this->_em->flush();
         }
-        if($data['delete']=1)
-        {
-            //brisanje iz tabele image
-            $id = $ad->GetImage();
-            $this->_deleteImage($id);//skok v funkcijo za izbris slike
-        }
-
-        //vnos v bazo
-        
-        $this->_em->persist($ad);
-        $this->_em->flush();
     }
     public function _deleteImage($id)
     {
@@ -278,7 +271,13 @@ class AccountController extends Zend_Controller_Action
     {        
         $ad = new Ad;
         $ad = $this->_em->getRepository('Oglasnik\Entities\Ad')->findOneById($id);
+        $imageId = $ad->getImage();
+        
+        $image = new Image;
+        $image = $this->_em->getRepository('Oglasnik\Entities\Image')->findOneById($imageId);
         $this->_em->remove($ad);
+        $this->_em->flush();
+        $this->_em->remove($image);
         $this->_em->flush();
     }
     public function newsAction()
