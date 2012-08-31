@@ -27,7 +27,13 @@ class AccountController extends Zend_Controller_Action
     {
         //podatki o uporabniku
         $User = new Zend_Session_Namespace('Default');
-        $cur_user = $User->Username;
+        if (isset($User->Username))
+        {
+            $cur_user = $User->Username;
+        }else
+        {
+            $this->_helper->redirector('login');
+        }
         $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneByUsername($cur_user);
         $this->view->user = $user;
         
@@ -38,9 +44,15 @@ class AccountController extends Zend_Controller_Action
     public function profilAction()
     {
         $User = new Zend_Session_Namespace('Default');
-        $cur_user = $User->Username;
-        $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneByUsername($cur_user);
-        $this->view->user = $user;        
+        if (isset($User->Username))
+        {
+            $cur_user = $User->Username;
+            $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneByUsername($cur_user);
+            $this->view->user = $user;  
+        }else
+        {
+            $this->_helper->redirector('login');
+        }       
     }
 
     public function registerAction()
@@ -76,10 +88,8 @@ class AccountController extends Zend_Controller_Action
                $this->_authenticate($data);
               
                $this->_helper->flashMessenger->addMessage('Prijava uspešna!');
-               //$this->_helper->redirector('index');
            } else {
                $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
-               //$this->_helper->redirector('login');
            }
        }  
     }
@@ -98,22 +108,22 @@ class AccountController extends Zend_Controller_Action
         {
             $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
             $this->_helper->redirector('login');
-            $User = new Zend_Session_Namespace('Default');
-            $User->Username = "Guest";
         }
         else 
         {
             $User = new Zend_Session_Namespace('Default');
  
-            if (isset($User->Username)) {
-                // this will increment for each page load.
+            if (isset($User->Username)) 
+            {
+                unset($User->Username);
+                $this->_helper->flashMessenger->addMessage('Prijava Neuspešna!');
+                $this->_helper->redirector('login');
+            } else 
+            {
                 $User->Username = $Username;
-            } else {
-                $User->Username = "Guest"; // first time
-            }
-            
-            $this->_helper->flashMessenger->addMessage('Prijava uspešna!');
-            $this->_helper->redirector('profil');
+                $this->_helper->flashMessenger->addMessage('Prijava uspešna!');
+                $this->_helper->redirector('profil'); 
+            } 
         }
         
         /*
@@ -146,15 +156,14 @@ class AccountController extends Zend_Controller_Action
     }
     public function logoutAction()
     {
-        $Username = 'Guest';
         $User = new Zend_Session_Namespace('Default');
-        $User->Username = $Username;
+        unset($User->Username);
     }
     public function addAction()
     {
        $form = new Form_Add();
        $this->view->form = $form;
-
+       
        if ($this->getRequest()->isPost()) {
            if ($form->isValid($this->getRequest()->getPost())) {
                $data = $form->getValues();

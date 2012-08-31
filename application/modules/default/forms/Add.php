@@ -24,7 +24,7 @@ class Form_Add extends Zend_Form
         
         // Add an category element
         $category = new Zend_Form_Element_Select('category');
-        //dopolni, da bo bralo podatke iz baze-> poizvedba vseh kategorij in nato 
+        //dopolni, da bo bralo podatke iz tabele-> poizvedba vseh kategorij in nato 
         //s foreach zpisovanje Id-jev in title
         $category->setLabel('Kategorija:')
                  ->setMultiOptions(array(
