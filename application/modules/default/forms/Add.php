@@ -1,10 +1,20 @@
 <?php
 
+use Oglasnik\Entities\Category;
+
 class Form_Add extends Zend_Form
 {
+    private $_em;
 
     public function init()
     {
+        $this->_em = \Zend_Registry::get('em');
+        $query = $this->_em->createQuery('SELECT c.id, c.title FROM Oglasnik\Entities\Category c');
+        $categorys = $query->getResult();
+        
+        
+        
+        
         // Set the method for the display form to POST
         $this->setMethod('post');
  
@@ -24,26 +34,15 @@ class Form_Add extends Zend_Form
         
         // Add an category element
         $category = new Zend_Form_Element_Select('category');
-        //dopolni, da bo bralo podatke iz tabele-> poizvedba vseh kategorij in nato 
-        //s foreach zpisovanje Id-jev in title
+        
         $category->setLabel('Kategorija:')
-                 ->setMultiOptions(array(
-                                        1=>'Stanovanja',
-                                        2=>'Hiše',
-                                        3=>'Parcele',
-                                        5=>'Avtomobili',
-                                        6=>'Tovorna vozila',
-                                        7=>'Motorna kolesa',
-                                        8=>'Avtodomi',
-                                        10=>'Zvočniki',
-                                        11=>'Oprema',
-                                        13=>'PC',
-                                        14=>'Mac',
-                                        15=>'Strežniki',
-                                        16=>'Tablice'
-                  ))
+                 ->setRequired(true)->addValidator('NotEmpty', true);
+        
+        foreach ($categorys as $cat):
+            $category->addMultiOption($cat['id'], $cat['title']);
+        endforeach;
 
-              ->setRequired(true)->addValidator('NotEmpty', true);
+              
         
         $this->addElements(array($category));
         
