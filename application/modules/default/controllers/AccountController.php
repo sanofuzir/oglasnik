@@ -258,6 +258,7 @@ class AccountController extends Zend_Controller_Action
         $image = $this->_em->getRepository('Oglasnik\Entities\Image')->findOneById($id); 
         $this->_em->remove($image);
         $this->_em->flush();
+        
     }
     public function deleteAction()
     {           
@@ -279,6 +280,10 @@ class AccountController extends Zend_Controller_Action
         $this->_em->flush();
         $this->_em->remove($image);
         $this->_em->flush();
+        
+        $filename = $image->getName();
+        unlink($filename);
+        
     }
     public function newsAction()
     {        
