@@ -59,7 +59,9 @@
                                     true) ?>">Spletni Oglasnik</a>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i>Username
+              <i class="icon-user"></i><?php $User = new Zend_Session_Namespace('Default');
+                                             echo $User->Username; 
+                                        ?>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -67,9 +69,7 @@
                                     array(
                                         'module' => 'default',
                                         'controller' => 'account',
-                                        'action'     => 'profil',
-                                        'id' => '1' //tukaj bo potem preko $_SESSION dobilo id userja
-                                        
+                                        'action'     => 'profil' 
                                     ),
                                     'default',
                                     true) ?>">Profil</a></li>
@@ -114,8 +114,7 @@
                                     array(
                                         'controller' => 'account',
                                         'action'     => 'list',
-                                        'module' => 'default',
-                                        'id' => '1' //tukaj bo potem preko $_SESSION dobilo id userja
+                                        'module' => 'default'
                                     ),
                                     'default',
                                     true) ?>">Moji Oglasi</a></li>

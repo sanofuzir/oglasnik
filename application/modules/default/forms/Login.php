@@ -27,11 +27,6 @@ class Form_Login extends Zend_Form
             'ignore'   => true,
             'label'    => 'Login',
         ));
- 
-        // And finally add some CSRF protection
-        $this->addElement('hash', 'csrf', array(
-            'ignore' => true,
-        )); 
 }
 
 }

@@ -38,7 +38,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         //pot za profil uporabnika
         $list_router = $frontController->getRouter();
 
-        $list_Route = new Zend_Controller_Router_Route('account/profil/:username',
+        $list_Route = new Zend_Controller_Router_Route('account/profil',
         array('module' => 'default',
         'controller' => 'account',
         'action' => 'profil'));

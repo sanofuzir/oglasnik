@@ -26,8 +26,9 @@ class AccountController extends Zend_Controller_Action
     public function listAction()
     {
         //podatki o uporabniku
-        $UserId = $this->_getParam('id');
-        $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($UserId);
+        $User = new Zend_Session_Namespace('Default');
+        $cur_user = $User->Username;
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneByUsername($cur_user);
         $this->view->user = $user;
         
         //oglasi uporabnika
@@ -36,8 +37,9 @@ class AccountController extends Zend_Controller_Action
     }
     public function profilAction()
     {
-        $cur_user = $this->_getParam('id');
-        $user = $this->_em->getRepository('Oglasnik\Entities\User')->find($cur_user);
+        $User = new Zend_Session_Namespace('Default');
+        $cur_user = $User->Username;
+        $user = $this->_em->getRepository('Oglasnik\Entities\User')->findOneByUsername($cur_user);
         $this->view->user = $user;        
     }
 
@@ -71,45 +73,82 @@ class AccountController extends Zend_Controller_Action
            if ($form->isValid($this->getRequest()->getPost())) {
                $data = $form->getValues();
 
-               $this->_loginCheck($data);
+               $this->_authenticate($data);
               
                $this->_helper->flashMessenger->addMessage('Prijava uspešna!');
-               $this->_helper->redirector('index');
+               //$this->_helper->redirector('index');
            } else {
                $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
-               $this->_helper->redirector('login');
+               //$this->_helper->redirector('login');
            }
        }  
     }
-    public function _loginCheck($data) 
-    {    /*DQL            
-        $query = $this->_em->createQuery('SELECT u from User u WHERE u.username = :name AND u.password = :pass');
-        $query->setParameters(array(
-            'name' => $data['username'],
-            'pass' => $data['password'],
-        ));
-        $users = $query->getResult();
-     * 
-     */
+    public function _authenticate($data)
+    {        
+        $Username = $data['username'];
+        $Password = $data['password'];
+
+        $dql = 'SELECT count(DISTINCT u.id) FROM Oglasnik\Entities\User u WHERE u.username =:username AND u.password =:password';
+        $query = $this->_em->createQuery($dql);
+        $query->setParameter('username', $Username);
+        $query->setParameter('password', $Password);
+        $results = $query->getResult();    
         
-        $users = $this->_em->getRepository('Oglasnik\Entities\User')->find($data['username']);
-        
-        if($users['password']==$data['password'])
+        if($results[0][1] != 1)
         {
-            $username = new Zend_Session_Namespace('Zend_Auth');
-            $username->username = $users['username'];
-            $this->view->username = $username;
+            $this->_helper->flashMessenger->addMessage('Podatki niso veljavni');
+            $this->_helper->redirector('login');
+            $User = new Zend_Session_Namespace('Default');
+            $User->Username = "Guest";
+        }
+        else 
+        {
+            $User = new Zend_Session_Namespace('Default');
+ 
+            if (isset($User->Username)) {
+                // this will increment for each page load.
+                $User->Username = $Username;
+            } else {
+                $User->Username = "Guest"; // first time
+            }
             
-            //return true;
+            $this->_helper->flashMessenger->addMessage('Prijava uspešna!');
+            $this->_helper->redirector('profil');
         }
-        else
-        {
-            //return false;
+        
+        /*
+        $request    = $this->getRequest();
+        $registry   = Zend_Registry::getInstance();
+        $auth       = Zend_Auth::getInstance(); 
+        $DB = $registry['DB'];
+
+        $authAdapter = new Zend_Auth_Adapter_DbTable($DB);
+        $authAdapter->setTableName('user')
+                    ->setIdentityColumn('username')
+                    ->setCredentialColumn('password');    
+        // Set the input credential values
+        $uname = $data['username'];
+        $paswd = $data['password'];
+        $authAdapter->setIdentity($uname);
+        $authAdapter->setCredential($paswd);
+
+        // Perform the authentication query, saving the result
+        $result = $auth->authenticate($authAdapter);
+
+        if($result->isValid()){
+            $data = $authAdapter->getResultRowObject(null,'password');
+            $auth->getStorage()->write($data);
+            $this->_helper->redirector('index');
+        }else{
+            $this->_redirect('login');
         }
+        */
     }
     public function logoutAction()
     {
-        // action body
+        $Username = 'Guest';
+        $User = new Zend_Session_Namespace('Default');
+        $User->Username = $Username;
     }
     public function addAction()
     {
