@@ -65,14 +65,30 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="<?php echo $this->url(
+              <li><a href="<?php 
+                                $User = new Zend_Session_Namespace('Default');
+                                if ($User->Username = 'admin')
+                                {
+                                    echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'profil',
+                                        'module' => 'admin'
+                                    ),
+                                    'default',
+                                    true);
+                                }else 
+                                {
+                                    echo $this->url(
                                     array(
                                         'module' => 'default',
                                         'controller' => 'account',
                                         'action'     => 'profil' 
                                     ),
                                     'default',
-                                    true) ?>">Profil</a></li>
+                                    true); 
+                                }
+                                    ?>">Profil</a></li>
               <li class="divider"></li>
               <li><a href="<?php echo $this->url(
                                     array(
@@ -110,14 +126,30 @@
                                     ),
                                     'default',
                                     true) ?>">Domov</a></li>
-              <li><a href="<?php echo $this->url(
+              <li><a href="<?php 
+                                $User = new Zend_Session_Namespace('Default');
+                                if ($User->Username = 'admin')
+                                {
+                                    echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'list',
+                                        'module' => 'admin'
+                                    ),
+                                    'default',
+                                    true);
+                                }else 
+                                {
+                                    echo $this->url(
                                     array(
                                         'controller' => 'account',
                                         'action'     => 'list',
                                         'module' => 'default'
                                     ),
                                     'default',
-                                    true) ?>">Moji Oglasi</a></li>
+                                    true); 
+                                }
+                                    ?>">Moji Oglasi</a></li>
               <li><a href="<?php echo $this->url(
                                     array(
                                         'controller' => 'contact',

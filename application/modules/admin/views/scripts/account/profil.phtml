@@ -1,0 +1,52 @@
+<div id="content">
+    <div id="view-content">
+        <div id="ads">
+            <!-- Izpis oglasov -->
+            <h2 id="ads_h2">Profili Uporabnikov: </h2>          
+
+            <?php foreach ($this->users as $user): ?>
+                <ul>
+                    <li>
+                        <span class="podatki">Username:</span> 
+                            <?php echo $user->getUsername();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Email:</span>
+                            <?php echo $user->getEmail();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Status: </span>
+                            <?php echo $user->getStatus();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Name: </span>
+                            <?php echo $user->getName();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Surname: </span>
+                            <?php echo $user->getSurname();?>
+                    </li>
+                    <li>
+                        <span class="podatki">Telephon: </span>
+                            <?php echo $user->getTelephon();?>
+                    </li>
+                    <li>
+                        <a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'delete',
+                                        'module' => 'admin',
+                                        'id' => $user->getId()
+                                    ),
+                                    'default',
+                                    true) ?>"/>
+                            <img style="width: 25px;" src="/img/delete.png" alt="delete">
+                            Briši uporabnika
+                        </a>
+                    </li>
+                </ul>
+            <hr />
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>

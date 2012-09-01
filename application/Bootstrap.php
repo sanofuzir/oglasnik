@@ -97,6 +97,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         'controller' => 'account',
         'action' => 'news'));
         $news_del_router->addRoute('viewadslist',$news_del_Route);
+        
+        //za brisanje uporanikov (admin modul)
+        $profil_del_router = $frontController->getRouter();
+
+        $profil_del_Route = new Zend_Controller_Router_Route('account/delete/:id',
+        array('module' => 'admin',
+        'controller' => 'account',
+        'action' => 'delete'));
+        $profil_del_router->addRoute('viewadslist',$profil_del_Route);
   
     }
 

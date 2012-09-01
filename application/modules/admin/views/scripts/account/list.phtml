@@ -1,0 +1,83 @@
+<div id="content">
+    <div id="view-content">
+        <a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'add',
+                                        'module' => 'default'
+                                    ),
+                                    'default',
+                                    true) ?>" />
+        <img src="/img/add.png" alt="add" style="width:25px; margin-top: -7px;"/>
+            <span class="ads_add">Dodajanje oglasov</span>
+        </a>
+        <div>
+            <h2 id="user_ads">Oglasi:</h2>
+            <br />
+            <?php foreach ($this->ads as $ad): ?>
+            <table id="list">
+                <tr>
+                    <td><span class="list">Ime:</span></td>
+                    <td><?php echo $ad->getName();?></td>
+                </tr>
+                <tr>
+                    <td><span class="list">Cena:</span></td>
+                    <td><?php echo $ad->getPrice()."€";?></td>
+                <tr>
+                    <td><span class="list">Opis:</span></td>
+                    <td><?php echo $ad->getDescription();?></td>
+                </tr>
+                <tr>
+                    <td><span class="list">Status:</span></td>
+                    <td><?php echo $ad->getStatus();?></td>
+                </tr>
+                <tr>
+                    <td><span class="list">datum:</span></td>
+                    <td><?php echo date_format($ad->getCreated(), "d.m.Y"); ?></td>
+                </tr>
+                <tr>
+                    <td><span class="list">Slika:</span></td>
+                    <td><?php 
+                            
+                            $str = $ad->getImage()->getName(); 
+                            $lokacija = explode('/', $str);
+                            echo ($lokacija[4]);
+                        ?>
+                        <a href="<?php echo "/".($lokacija[4]);  ?>" />
+                            <img src="<?php echo "/".($lokacija[4]); ?>" alt="slika">                      </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'edit',
+                                        'module' => 'default',
+                                        'id' => $ad->getId()
+                                    ),
+                                    'default',
+                                    true) ?>"/>
+                        <img style="width: 25px;" src="/img/edit.png" alt="edit">
+                            Uredi
+                        </a>
+                    </td>
+                    <td><a href="<?php echo $this->url(
+                                    array(
+                                        'controller' => 'account',
+                                        'action'     => 'delete',
+                                        'module' => 'default',
+                                        'id' => $ad->getId()
+                                    ),
+                                    'default',
+                                    true) ?>"/>
+                            <img style="width: 25px;" src="/img/delete.png" alt="delete">
+                            Briši
+                        </a>
+                    </td>
+                </tr>
+            </table>                     
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+
