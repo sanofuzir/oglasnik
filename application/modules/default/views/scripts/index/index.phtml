@@ -1,6 +1,7 @@
-<div class="span9" style="margin: -520px 0 0 27%;">
+<div class="span9" style="margin: -570px 0 0 27%;">
           <div class="hero-unit">
               <h1><?php echo $this->news->getName(); ?></h1>
+              <br />
             <p><?php echo $this->news->getText(); ?></p>
             <p><a href="<?php echo $this->url(
                                     array(
@@ -13,7 +14,7 @@
           </div>
           <div class="row-fluid" style="margin-left: 20px;">
             <div class="span4">
-              <h2>Zadnji dodan Oglas</h2>
+              <h2 style="margin-top: -70px;">Zadnji dodan Oglas</h2>
               <p><?php echo "Ime: ".$this->ad->getName();
                        echo "<br />"."Cena: ".$this->ad->getPrice();
                        echo "<br />"."Opis: ".$this->ad->getDescription();

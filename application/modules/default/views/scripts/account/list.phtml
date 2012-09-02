@@ -41,7 +41,7 @@
                             
                             $str = $ad->getImage()->getName(); 
                             $lokacija = explode('/', $str);
-                            echo ($lokacija[4]);
+                            //echo ($lokacija[4]);
                         ?>
                         <a href="<?php echo "/".($lokacija[4]);  ?>" />
                             <img src="<?php echo "/".($lokacija[4]); ?>" alt="slika">                      </a>
@@ -69,7 +69,7 @@
                                         'id' => $ad->getId()
                                     ),
                                     'default',
-                                    true) ?>"/>
+                                    true) ?>" rel="lightbox"/>
                             <img style="width: 25px;" src="/img/delete.png" alt="delete">
                             Briši
                         </a>

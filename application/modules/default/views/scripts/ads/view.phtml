@@ -2,7 +2,7 @@
     <div id="view-content">
         <div id="ads">
             <!-- Izpis oglasov -->
-            <h2 id="ads_h2">Oglasi <?php echo "id:".$this->ad->getId(); ?></h2>          
+            <h2 id="ads_h2">Oglas <?php echo "id:".$this->ad->getId(); ?></h2>          
                 <ul>
                     <li>
                         <span class="podatki">Ime:</span> 
@@ -20,14 +20,14 @@
                         <span class="podatki">Datum:</span>
                             <?php echo date_format($this->ad->getCreated(), "d.m.Y"); ?>
                     </li>
-                    <li><span class="podatki">Slike:</span><br /><br />
+                    <li><span class="podatki">Slika:</span><br /><br />
                         <?php 
                             
                             $str = $this->ad->getImage()->getName(); 
                             $lokacija = explode('/', $str);
-                            echo ($lokacija[4]);
+                            //echo ($lokacija[4]);
                         ?>
-                        <a href="<?php echo "/".($lokacija[4]);  ?>" />
+                        <a href="<?php echo "/".($lokacija[4]);  ?>" rel="lightbox"/>
                             <img src="<?php echo "/".($lokacija[4]);  ?>" alt="slika">
                         </a>
                     </li>

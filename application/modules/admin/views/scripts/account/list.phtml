@@ -41,9 +41,9 @@
                             
                             $str = $ad->getImage()->getName(); 
                             $lokacija = explode('/', $str);
-                            echo ($lokacija[4]);
+                            //echo ($lokacija[4]);
                         ?>
-                        <a href="<?php echo "/".($lokacija[4]);  ?>" />
+                        <a href="<?php echo "/".($lokacija[4]);  ?>" rel="lightbox"/>
                             <img src="<?php echo "/".($lokacija[4]); ?>" alt="slika">                      </a>
                     </td>
                 </tr>
