@@ -92,7 +92,15 @@
                                     'default',
                                     true); 
                                 }
-                                    ?>">Profil</a></li>
+                                    ?>"><?php 
+                                    if ($User->Username == 'admin') 
+                                    {
+                                        echo "Profili uporabnikov";
+                                    }else
+                                    {
+                                        echo "Profil";
+                                    }
+                                    ?></a></li>
               <li class="divider"></li>
               <li><a href="<?php echo $this->url(
                                     array(
