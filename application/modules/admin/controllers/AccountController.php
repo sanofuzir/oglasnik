@@ -31,7 +31,7 @@ class Admin_AccountController extends Zend_Controller_Action
     }
     public function profilAction()
     {
-        $User = new Zend_Session_Namespace('Default');
+        $User = new Zend_Session_Namespace('Zend_Auth');
         if (isset($User->Username))
         {
             $cur_user = $User->Username;

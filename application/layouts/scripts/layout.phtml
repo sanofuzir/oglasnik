@@ -63,15 +63,15 @@
                                     true) ?>">Spletni Oglasnik</a>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i><?php $User = new Zend_Session_Namespace('Default');
+              <i class="icon-user"></i><?php $User = new Zend_Session_Namespace('Zend_Auth');
                                              echo $User->Username; 
                                         ?>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li><a href="<?php 
-                                $User = new Zend_Session_Namespace('Default');
-                                if ($User->Username = 'admin')
+                                $User = new Zend_Session_Namespace('Zend_Auth');
+                                if ($User->Username == 'admin')
                                 {
                                     echo $this->url(
                                     array(
@@ -131,8 +131,9 @@
                                     'default',
                                     true) ?>">Domov</a></li>
               <li><a href="<?php 
-                                $User = new Zend_Session_Namespace('Default');
-                                if ($User->Username = 'admin')
+              
+                                $User = new Zend_Session_Namespace('Zend_Auth');
+                                if ($User->Username == 'admin')
                                 {
                                     echo $this->url(
                                     array(
