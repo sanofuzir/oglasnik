@@ -17,7 +17,7 @@ class AdsController extends Zend_Controller_Action
         setlocale(LC_ALL, 'sl_SI');
         $cur_category = $this->_getParam('category');
         $category = $this->_em->getRepository('Oglasnik\Entities\Category')->findOneByName($cur_category);
-        $this->view->category = $category->getName();
+        $this->view->category = $category->getTitle();
         $this->view->ads = $category->getAds();
     }
     public function viewAction()

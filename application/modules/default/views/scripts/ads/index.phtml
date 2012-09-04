@@ -6,20 +6,23 @@
             <br />
             <?php foreach ($this->ads as $ad): ?>
                 <div>
-                    <a href="<?php echo $this->url(
-                                    array(
-                                        'module' => 'default',
-                                        'controller' => 'ads',
-                                        'action'     => 'view',
-                                        'id' => $ad->getId()
-                                        
-                                    ),
-                                    'default',
-                                    true) ?>" />
-                        <?php echo $ad->getName();?> -  
-                        <?php echo $ad->getPrice()."€";?>
-                        <br />
-                    </a>                    
+                    <li style="border-bottom: 1px solid black; list-style-type: none;">
+                        <a style="padding-top: 30px;"
+                           href="<?php echo $this->url(
+                                        array(
+                                            'module' => 'default',
+                                            'controller' => 'ads',
+                                            'action'     => 'view',
+                                            'id' => $ad->getId()
+
+                                        ),
+                                        'default',
+                                        true) ?>" />
+                            <?php echo $ad->getName();?> -  
+                            <?php echo $ad->getPrice()."€";?>
+                            <br />
+                        </a> 
+                    </li>
                 </div>
                 <br /> <br />
             <?php endforeach; ?>

@@ -51,6 +51,28 @@ class Category
     {
         return $this->id;
     }
+    
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Category
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
     /**
      * Set name
