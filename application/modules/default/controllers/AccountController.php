@@ -150,8 +150,6 @@ class AccountController extends Zend_Controller_Action
     {
         $User = new Zend_Session_Namespace('Zend_Auth');
         unset($User->Username);
-        session_destroy();
-        var_dump($User->Username);
     }
     public function addAction()
     {
